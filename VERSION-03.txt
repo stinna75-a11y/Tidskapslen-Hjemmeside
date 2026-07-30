@@ -1,0 +1,15 @@
+Tidskapslen Hjemmeside – Version 03
+
+Nyt:
+- Epoxy-archen er bevaret som hero-billede.
+- Den øverste 'Få en personlig snak'-knap er fjernet.
+- 'Se, hvordan det foregår'-knappen ved siden af hoved-CTA er fjernet.
+- Ny sektion: Produkter & priser med alle 15 produktkort.
+- Ingen læg-i-kurv-funktion.
+- Hvert produkt har 'Spørg til dette produkt'.
+- Ny sektion med personlige tilvalg.
+- Produktsiden er responsiv på mobil og tablet.
+
+Bemærk:
+Produktkortene viser de aktuelle oplysninger, mål og priser direkte i kortenes grafik.
+Tilvalgspriser kan tilføjes, når den endelige prisliste er fastlagt.

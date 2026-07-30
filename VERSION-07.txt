@@ -1,0 +1,14 @@
+Tidskapslen Hjemmeside – Version 07
+
+Nyt:
+- FAQ-sektion med 8 centrale spørgsmål og svar.
+- Praktisk note om naturmaterialer og håndlavet epoxy.
+- FAQ er tilføjet i topmenuen.
+- De to tidligere fjernede knapper er fortsat fjernet:
+  * "Få en personlig snak"
+  * "Se, hvordan det foregår"
+- Resten af Version 06 er bevaret.
+
+Næste naturlige skridt:
+- Juridiske sider: handelsbetingelser, privatlivspolitik og cookiepolitik.
+- Eller Studio-integration, så website-henvendelser vises direkte i Studio.

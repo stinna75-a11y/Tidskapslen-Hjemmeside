@@ -1,0 +1,25 @@
+Tidskapslen Hjemmeside – Version 08
+
+Nyt:
+- Handelsbetingelser.
+- Privatlivspolitik.
+- Cookiepolitik.
+- Footer-links til de juridiske sektioner.
+- Juridisk advarselsboks med felter, der skal udfyldes før offentlig lancering.
+- De to tidligere fjernede knapper er fortsat fjernet.
+
+Vigtigt:
+Teksterne er et tilpasset udkast og ikke individuel juridisk rådgivning.
+Før offentlig lancering skal følgende udfyldes/afklares:
+- Registreret virksomhedsnavn.
+- CVR, hvis relevant.
+- Fysisk adresse.
+- E-mail og telefonnummer.
+- Betalingsmetode.
+- Endelig leveringsmodel.
+- Præcis opbevaringsperiode for henvendelser.
+- Relevant klageadgang.
+- Endelig vurdering af fortrydelsesret for de konkrete specialfremstillede produkter.
+
+Cookiepolitikken forudsætter, at der ikke tilføjes analyse- eller markedsføringscookies.
+Hvis der senere tilføjes fx Meta Pixel eller Google Analytics, skal cookieopsætningen ændres.
