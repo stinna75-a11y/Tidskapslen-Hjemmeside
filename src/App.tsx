@@ -722,9 +722,8 @@ const selectProduct = (productName: string) => {
 
               <h4>1. Virksomhedsoplysninger</h4>
               <p>
-                Tidskapslen · [indsæt registreret virksomhedsnavn] ·
-                CVR: [indsæt CVR, hvis registreret] · Adresse: [indsæt fysisk adresse] ·
-                E-mail: [indsæt e-mail] · Telefon: [indsæt telefonnummer].
+                Tidskapslen · Tidskapslen·
+                E-mail:tidskapslenepoxyminder@gmail.com· Telefon: 40 92 23 14.
               </p>
 
               <h4>2. Forespørgsel og aftale</h4>
@@ -795,9 +794,9 @@ const selectProduct = (productName: string) => {
 
               <h4>1. Dataansvarlig</h4>
               <p>
-                Tidskapslen / [indsæt registreret virksomhedsnavn] er dataansvarlig for de personoplysninger,
+                Tidskapslen / Tidskapslen er dataansvarlig for de personoplysninger,
                 du sender via hjemmesiden eller giver i forbindelse med en kundehenvendelse.
-                Kontakt: [indsæt adresse, e-mail og telefonnummer].
+                Kontakt: email; tidskapslenepoxyminder@gmail.com Telefon: 40922314.
               </p>
 
               <h4>2. Hvilke oplysninger behandles?</h4>
