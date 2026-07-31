@@ -865,9 +865,7 @@ const selectProduct = (productName: string) => {
               </p>
             </article>
           </div>
-
-          <div className="legal-warning">
-
+          </section>
       </main>
 
       <footer className="footer">
