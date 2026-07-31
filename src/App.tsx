@@ -867,13 +867,6 @@ const selectProduct = (productName: string) => {
           </div>
 
           <div className="legal-warning">
-            <strong>Før offentlig lancering</strong>
-            <p>
-              Udfyld alle felter markeret med [indsæt ...], og få handelsbetingelserne
-              tilpasset din endelige virksomhedsregistrering, betalingsmodel og leveringsform.
-            </p>
-          </div>
-        </section>
 
       </main>
 
