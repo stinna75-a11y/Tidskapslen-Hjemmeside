@@ -30,21 +30,21 @@ const products: Product[] = [
     {  name: "Hexagon stor",
   image: heroProduct,
   size: "24 × 21 × 3,5 cm",
-  price: "Fra 3.500 kr.",
+  price: "Fra 3.250 kr.",
   note: "Skabes individuelt med dine egne blomster."
 },
   {
   name: "Hexagon lille",
   image: product02,
   size: "17 × 17 × 3,5 cm",
-  price: "Fra 2.900 kr.",
+  price: "Fra 2.800 kr.",
   note: "Skabes individuelt med dine egne blomster."
 },
   {
   name: "Hjerte stor",
   image: product03,
   size: "19 × 22 × 5 cm",
-  price: "Fra 3.200 kr.",
+  price: "Fra 2.995 kr.",
   note: "Skabes individuelt med dine egne blomster."
 },
   {
@@ -58,7 +58,7 @@ const products: Product[] = [
   name: "Arc stor",
   image: product05,
   size: "16 × 21 × 3,5 cm",
-  price: "Fra 3.300 kr.",
+  price: "Fra 3.095 kr.",
   note: "Skabes individuelt med dine egne blomster."
 },
   {
@@ -78,14 +78,14 @@ const products: Product[] = [
   name: "Bogstøtte",
   image: product08,
   size: "17 × 17 × 3,5 cm",
-  price: "Fra 1.500 kr.",
+  price: "Fra 1.400 kr.",
   note: "Skabes individuelt med dine egne blomster."
 },
   {
   name: "Sfære stor",
   image: product09,
   size: "15 × 15 × 15 cm",
-  price: "Fra 1.300 kr.",
+  price: "Fra 1.150 kr.",
   note: "Skabes individuelt med dine egne blomster."
 },
   {
