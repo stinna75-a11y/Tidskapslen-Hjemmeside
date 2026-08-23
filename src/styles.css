@@ -33,14 +33,14 @@ button {
 
 .header {
   z-index: 20;
-  display: grid;
-  grid-template-columns: minmax(250px, 1fr) auto minmax(200px, 1fr);
-  align-items: center;
+display: grid;
+grid-template-columns: minmax(250px, 1fr) auto minmax(200px, 1fr);
+align-items: center;
   gap: clamp(24px, 3vw, 36px);
   min-height: 92px;
   padding: 14px clamp(24px, 5vw, 76px);
   border-bottom: 1px solid rgba(117, 91, 101, 0.10);
-  background: rgba(250, 246, 242, 0.92);
+background: #FAF6F1;
   backdrop-filter: blur(14px);
 }
 
@@ -57,7 +57,7 @@ button {
 }
 
 .brand img {
-width: 220px;
+width: 340px;
 height: auto;
   object-fit: contain;
 }
@@ -84,13 +84,15 @@ height: auto;
 .nav {
   display: flex;
   gap: 30px;
+  justify-content: center;
+  width: 100%;
+  transform: none;
 }
-
 .nav button,
 .secondary {
   border: 0;
   background: transparent;
-  color: #6d6065;
+  color: #e8b184;
   cursor: pointer;
 }
 
@@ -160,8 +162,8 @@ font-size: clamp(0.95rem, 1vw, 1.05rem);
   grid-template-columns: minmax(0, 1.04fr) minmax(360px, .96fr);
   align-items: center;
   gap: clamp(44px, 7vw, 110px);
-  min-height: calc(100vh - 92px);
-  padding: clamp(64px, 8vw, 120px) clamp(24px, 7vw, 110px);
+min-height: auto;
+padding: 0 clamp(24px, 7vw, 110px);
   background:
     linear-gradient(90deg, rgba(249, 243, 239, .96), rgba(247, 234, 238, .80)),
     #f7ecee;
@@ -286,7 +288,10 @@ h1 em {
 }
 
 .story {
-  background: #fffdfb;
+  background-image: url("./assets/Historien-baggrund.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
 }
 
 
@@ -384,7 +389,7 @@ h1 em {
 }
 
 .occasions {
-  background: #f8f0f1;
+  background: #F4E8E3;
 }
 
 .section-heading {
@@ -437,7 +442,7 @@ blockquote {
 }
 
 .process {
-  background: #fffdfb;
+  background: #F4E8E3;
 }
 
 .process-heading {
@@ -510,7 +515,7 @@ blockquote {
 }
 
 .contact {
-  background: #f8eff0;
+  background: #F4E8E3;
 }
 
 .contact-card {
@@ -519,7 +524,7 @@ blockquote {
   padding: clamp(38px, 7vw, 74px);
   border: 1px solid rgba(183, 133, 151, .14);
   border-radius: 32px;
-  background: rgba(255,255,255,.76);
+background: #F8F1ED;
   text-align: center;
   box-shadow: 0 30px 80px rgba(102, 73, 86, .08);
 }
@@ -689,7 +694,7 @@ blockquote {
 
 /* Version 03 – Produkter & priser */
 .products {
-  background: #fffdfb;
+  background: #F4E8E3;
 }
 
 .products-heading {
@@ -863,7 +868,7 @@ padding: 18px 40px 24px;
   padding: clamp(26px, 5vw, 46px);
   border: 1px solid rgba(183, 133, 151, .14);
   border-radius: 30px;
-  background: rgba(255,255,255,.82);
+background: #F8F1ED;
   box-shadow: 0 28px 70px rgba(102, 73, 86, .08);
 }
 
@@ -1001,7 +1006,7 @@ padding: 18px 40px 24px;
 
 /* Version 07 – FAQ & praktisk information */
 .faq {
-  background: #fffdfb;
+  background: #F4E8E3;
 }
 
 .faq-grid {
@@ -1150,4 +1155,70 @@ padding: 18px 40px 24px;
   font-size: 14px;
   line-height: 1.5;
   color: #806f74;
+}
+.hero-image-only .hero-full-image {
+  display: block;
+  width: 140%;
+  max-width: none;
+  height: auto;
+  margin-left: -20%;
+}
+.header {
+  position: relative;
+}
+
+.header > .nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max-content;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+}
+.occasions.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.anledninger-blomster {
+  position: absolute;
+  top: 45px;
+  right: 40px;
+  width: 380px;
+  height: auto;
+  margin: 0;
+  pointer-events: none;
+}
+.history-page .story {
+  position: relative;
+  overflow: hidden;
+}
+
+.historie-gren {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  width: 280px;
+  height: auto;
+  margin: 0;
+  pointer-events: none;
+}
+.historien-om-mig {
+  position: absolute;
+  width: 260px;
+  height: auto;
+  right: 6%;
+  top: 70px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.about-person {
+  position: relative;
+}
+.hero.hero-image-only {
+  min-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: block;
 }
