@@ -4,7 +4,7 @@ import { supabase } from "./supabase";
 import logo from "./assets/Logo transparent.png";
 import heroProduct from "./assets/stor-hex-rosa.png";
 import processIllustration from "./assets/saadan-foregaar-det.png";
-import headerBillede from "./assets/header-billede.png";
+import headerBillede from "./assets/Header-billede.png";
 import anledningerBlomster from "./assets/anledninger-blomster.png";
 import product01 from "./assets/produkt-01.png";
 import product02 from "./assets/produkt-02.png";
