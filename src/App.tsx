@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "./supabase";
-import logo from "./assets/Logo transparent.png";
 import heroProduct from "./assets/stor-hex-rosa.png";
 import processIllustration from "./assets/saadan-foregaar-det.png";
-import headerBillede from "./assets/Header-billede.png";
+import headerBillede from "./assets/forside-uden-logo.png";
+import heroLogo from "./assets/hovedlogo-transparent.png";
 import anledningerBlomster from "./assets/anledninger-blomster.png";
 import product01 from "./assets/produkt-01.png";
 import product02 from "./assets/produkt-02.png";
@@ -170,6 +170,13 @@ function HeroDepthImage() {
           alt="Tidskapslen – Livets blomster foreviget"
           className="hero-full-image"
         />
+        <div className="hero-logo-layer">
+          <img src={heroLogo} alt="Tidskapslen – foreviger livets minder" className="hero-logo-image" />
+          <img src={heroLogo} alt="" className="hero-logo-image hero-logo-shimmer" aria-hidden="true" />
+          <span className="hero-logo-sparkle logo-sparkle-one" aria-hidden="true">✦</span>
+          <span className="hero-logo-sparkle logo-sparkle-two" aria-hidden="true">✦</span>
+          <span className="hero-logo-sparkle logo-sparkle-three" aria-hidden="true">✦</span>
+        </div>
         <div className="hero-depth-light" aria-hidden="true" />
         <div className="hero-sparkles" aria-hidden="true">
           <i className="hero-sparkle sparkle-one" />
