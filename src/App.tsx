@@ -177,6 +177,11 @@ function HeroDepthImage() {
           <i className="hero-sparkle sparkle-three" />
           <i className="hero-sparkle sparkle-four" />
           <i className="hero-sparkle sparkle-five" />
+          <i className="hero-sparkle sparkle-six" />
+          <i className="hero-sparkle sparkle-seven" />
+          <i className="hero-sparkle sparkle-eight" />
+          <i className="hero-sparkle sparkle-nine" />
+          <i className="hero-sparkle sparkle-ten" />
         </div>
       </div>
     </div>
