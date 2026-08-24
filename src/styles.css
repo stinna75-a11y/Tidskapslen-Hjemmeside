@@ -1157,6 +1157,8 @@ background: #F8F1ED;
   color: #806f74;
 }
 .hero-image-only {
+  width: min(1530px, calc(100% - 48px));
+  margin: 0 auto;
   overflow: hidden;
   perspective: 1400px;
 }
@@ -1305,6 +1307,11 @@ background: #F8F1ED;
 @media (hover: none), (pointer: coarse) {
   .hero-depth-card { animation: heroMobileFloat 9s ease-in-out infinite; }
   .hero-depth-light { opacity: .5; }
+}
+
+@media (max-width: 650px) {
+  .hero-image-only { width: 100%; }
+  .hero-depth-frame { padding: 4px 0; }
 }
 
 @keyframes heroMobileFloat {
