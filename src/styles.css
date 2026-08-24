@@ -1156,12 +1156,102 @@ background: #F8F1ED;
   line-height: 1.5;
   color: #806f74;
 }
+.hero-image-only {
+  overflow: hidden;
+  perspective: 1400px;
+}
+
+.hero-depth-frame {
+  --hero-rotate-x: 0deg;
+  --hero-rotate-y: 0deg;
+  --hero-light-x: 68%;
+  --hero-light-y: 55%;
+  width: 140%;
+  margin-left: -20%;
+  padding: 10px 0;
+  perspective: 1400px;
+}
+
+.hero-depth-card {
+  position: relative;
+  overflow: hidden;
+  transform: rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y)) scale(1.018);
+  transform-style: preserve-3d;
+  transition: transform 650ms cubic-bezier(.2,.75,.25,1);
+  will-change: transform;
+}
+
 .hero-image-only .hero-full-image {
   display: block;
-  width: 140%;
+  width: 100%;
   max-width: none;
   height: auto;
-  margin-left: -20%;
+  transform: translateZ(0);
+}
+
+.hero-depth-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--hero-light-x) var(--hero-light-y), rgba(255,255,255,.24), rgba(255,245,231,.07) 15%, transparent 34%);
+  mix-blend-mode: screen;
+  opacity: .76;
+  transition: background-position 400ms ease;
+}
+
+.hero-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 7px rgba(255,242,205,.9));
+}
+
+.hero-sparkle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  animation: heroSparkle 4.8s ease-in-out infinite;
+}
+
+.hero-sparkle::before,
+.hero-sparkle::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  margin: auto;
+  border-radius: 999px;
+  background: rgba(255,255,245,.96);
+}
+
+.hero-sparkle::before { width: 2px; height: 100%; }
+.hero-sparkle::after { width: 100%; height: 2px; }
+.sparkle-one { left: 63%; top: 54%; animation-delay: .2s; }
+.sparkle-two { left: 70%; top: 67%; width: 10px; height: 10px; animation-delay: 1.8s; }
+.sparkle-three { left: 77%; top: 72%; width: 13px; height: 13px; animation-delay: 3.1s; }
+.sparkle-four { left: 82%; top: 36%; width: 9px; height: 9px; animation-delay: 4s; }
+.sparkle-five { left: 58%; top: 81%; width: 8px; height: 8px; animation-delay: 2.5s; }
+
+@keyframes heroSparkle {
+  0%, 68%, 100% { opacity: 0; transform: scale(.35) rotate(0deg); }
+  76% { opacity: .95; transform: scale(1) rotate(45deg); }
+  84% { opacity: 0; transform: scale(1.55) rotate(80deg); }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hero-depth-card { animation: heroMobileFloat 9s ease-in-out infinite; }
+  .hero-depth-light { opacity: .5; }
+}
+
+@keyframes heroMobileFloat {
+  0%, 100% { transform: rotateX(0deg) rotateY(-.45deg) scale(1.018); }
+  50% { transform: rotateX(.35deg) rotateY(.45deg) scale(1.025); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-depth-card { animation: none; transform: none; transition: none; }
+  .hero-sparkle { animation: none; display: none; }
+  .hero-depth-light { display: none; }
 }
 .header {
   position: relative;

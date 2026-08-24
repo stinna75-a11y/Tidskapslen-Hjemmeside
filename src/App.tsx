@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "./supabase";
 import logo from "./assets/Logo transparent.png";
@@ -132,17 +132,64 @@ function SiteLayout({ children }: { children: ReactNode }) {
   );
 }
 
+function HeroDepthImage() {
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  function moveImage(event: PointerEvent<HTMLDivElement>) {
+    if (event.pointerType === "touch" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const frame = frameRef.current;
+    if (!frame) return;
+    const bounds = frame.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    frame.style.setProperty("--hero-rotate-y", `${(x - 0.5) * 2.4}deg`);
+    frame.style.setProperty("--hero-rotate-x", `${(0.5 - y) * 1.8}deg`);
+    frame.style.setProperty("--hero-light-x", `${x * 100}%`);
+    frame.style.setProperty("--hero-light-y", `${y * 100}%`);
+  }
+
+  function resetImage() {
+    const frame = frameRef.current;
+    if (!frame) return;
+    frame.style.setProperty("--hero-rotate-y", "0deg");
+    frame.style.setProperty("--hero-rotate-x", "0deg");
+    frame.style.setProperty("--hero-light-x", "68%");
+    frame.style.setProperty("--hero-light-y", "55%");
+  }
+
+  return (
+    <div
+      ref={frameRef}
+      className="hero-depth-frame"
+      onPointerMove={moveImage}
+      onPointerLeave={resetImage}
+    >
+      <div className="hero-depth-card">
+        <img
+          src={headerBillede}
+          alt="Tidskapslen – Livets blomster foreviget"
+          className="hero-full-image"
+        />
+        <div className="hero-depth-light" aria-hidden="true" />
+        <div className="hero-sparkles" aria-hidden="true">
+          <i className="hero-sparkle sparkle-one" />
+          <i className="hero-sparkle sparkle-two" />
+          <i className="hero-sparkle sparkle-three" />
+          <i className="hero-sparkle sparkle-four" />
+          <i className="hero-sparkle sparkle-five" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HomePage() {
   const navigate = useNavigate();
 
   return (
     <main id="top">
 <section className="hero-image-only">
-  <img
-    src={headerBillede}
-    alt="Tidskapslen – Livets blomster foreviget"
-    className="hero-full-image"
-  />
+  <HeroDepthImage />
 </section>
     </main>
   );
