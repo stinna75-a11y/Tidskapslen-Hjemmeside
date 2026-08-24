@@ -1157,7 +1157,7 @@ background: #F8F1ED;
   color: #806f74;
 }
 .hero-image-only {
-  width: min(1350px, calc(100% - 48px));
+  width: min(1250px, calc(100% - 48px));
   margin: 0 auto;
   overflow: hidden;
   perspective: 1400px;
