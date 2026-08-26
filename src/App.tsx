@@ -36,8 +36,8 @@ type Product = {
 };
 
 const products: Product[] = [
-  { name: "Hexagon stor", image: heroProduct, size: "24 × 21 × 3,5 cm", price: "Fra 3.250 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Hexagon lille", image: product02, size: "17 × 17 × 3,5 cm", price: "Fra 2.800 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hexagon stor", image: heroProduct, size: "25,8 × 22,8 × 5,2 cm", price: "Fra 3.250 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hexagon lille", image: product02, size: "18,5 × 16,5 × 5,1 cm", price: "Fra 2.800 kr.", note: "Skabes individuelt med dine egne blomster." },
   { name: "Hjerte stor", image: product03, size: "19 × 22 × 5 cm", price: "Fra 2.995 kr.", note: "Skabes individuelt med dine egne blomster." },
   { name: "Hjerte lille", image: product04, size: "12 × 12 × 3,5 cm", price: "Fra 2.700 kr.", note: "Skabes individuelt med dine egne blomster." },
   { name: "Arc stor", image: product05, size: "16 × 21 × 3,5 cm", price: "Fra 3.095 kr.", note: "Skabes individuelt med dine egne blomster." },
