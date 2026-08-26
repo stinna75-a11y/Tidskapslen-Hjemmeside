@@ -1434,22 +1434,37 @@ background: #F8F1ED;
 }
 
 @media (max-width: 650px) {
+  .hero-image-only {
+    width: 100%;
+    margin: 0;
+  }
+
   .hero-depth-frame {
+    width: 100%;
     padding: 0;
   }
 
   .hero-depth-card {
+    width: 100%;
     animation: none;
     transform: none;
   }
 
+  .hero-image-only .hero-full-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
   .footer {
-    gap: 24px;
-    padding: 30px 22px 34px;
+    gap: 14px;
+    margin-top: 0;
+    padding: 20px 18px 22px;
   }
 
   .footer-links {
-    gap: 12px 18px;
+    gap: 8px 14px;
   }
 }
 .occasions.section {
