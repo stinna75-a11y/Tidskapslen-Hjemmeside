@@ -90,6 +90,7 @@ const navItems = [
 function SiteLayout({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -102,12 +103,42 @@ function SiteLayout({ children }: { children: ReactNode }) {
     }
   }, [location.pathname, location.hash]);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  function goTo(path: string) {
+    setMobileMenuOpen(false);
+    navigate(path);
+  }
+
   return (
     <div className="site">
       <header className="header">
-        <nav className="nav" aria-label="Hovedmenu">
+        <button className="mobile-brand" type="button" onClick={() => goTo("/")} aria-label="Gå til forsiden">
+          <span aria-hidden="true">✦</span>
+          Tidskapslen
+        </button>
+        <button
+          className={`menu-toggle${mobileMenuOpen ? " is-open" : ""}`}
+          type="button"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="main-navigation"
+          aria-label={mobileMenuOpen ? "Luk menu" : "Åbn menu"}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav id="main-navigation" className={`nav${mobileMenuOpen ? " nav-open" : ""}`} aria-label="Hovedmenu">
           {navItems.map((item) => (
-            <button key={item.path} type="button" onClick={() => navigate(item.path)}>
+            <button
+              key={item.path}
+              type="button"
+              onClick={() => goTo(item.path)}
+              aria-current={location.pathname === item.path ? "page" : undefined}
+            >
               {item.label}
             </button>
           ))}
