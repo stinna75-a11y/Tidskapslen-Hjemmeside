@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 import heroProduct from "./assets/stor-hex-rosa.png";
 import processIllustration from "./assets/saadan-foregaar-det.png";
 import headerBillede from "./assets/forside-uden-logo.png";
+import headerBilledeMobil from "./assets/forside-mobil-uden-logo.png";
 import heroLogo from "./assets/hovedlogo-transparent.png";
 import anledningerBlomster from "./assets/anledninger-blomster.png";
 import product01 from "./assets/produkt-01.png";
@@ -196,11 +197,14 @@ function HeroDepthImage() {
       onPointerLeave={resetImage}
     >
       <div className="hero-depth-card">
-        <img
-          src={headerBillede}
-          alt="Tidskapslen – Livets blomster foreviget"
-          className="hero-full-image"
-        />
+        <picture className="hero-picture">
+          <source media="(max-width: 650px)" srcSet={headerBilledeMobil} />
+          <img
+            src={headerBillede}
+            alt="Tidskapslen – Livets blomster foreviget"
+            className="hero-full-image"
+          />
+        </picture>
         <div className="hero-logo-layer">
           <img src={heroLogo} alt="Tidskapslen – foreviger livets minder" className="hero-logo-image" />
           <img src={heroLogo} alt="" className="hero-logo-image hero-logo-shimmer" aria-hidden="true" />

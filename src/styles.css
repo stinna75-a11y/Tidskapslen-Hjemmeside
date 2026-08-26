@@ -1191,6 +1191,10 @@ background: #F8F1ED;
   transform: translateZ(0);
 }
 
+.hero-picture {
+  display: block;
+}
+
 .hero-logo-layer {
   position: absolute;
   top: -.5%;
@@ -1455,6 +1459,11 @@ background: #F8F1ED;
     width: 100%;
     height: auto;
     object-fit: contain;
+  }
+
+  .hero-logo-layer {
+    top: 1.2%;
+    width: 76%;
   }
 
   .footer {
