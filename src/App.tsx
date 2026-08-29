@@ -216,12 +216,8 @@ function HeroDepthImage() {
           <h1>Livets blomster</h1>
           <p className="hero-copy-script">foreviget</p>
           <p className="hero-copy-intro">
-            Dine blomster fortæller en historie.<br />
-            Jeg bevarer dem i krystalklar epoxy og<br />
-            skaber et varigt minde om de øjeblikke, du<br />
-            aldrig vil glemme.
+            Dine blomster fortæller en historie. Jeg bevarer dem i krystalklar epoxy og skaber et varigt minde om de øjeblikke, du aldrig vil glemme.
           </p>
-          <div className="hero-copy-divider" aria-hidden="true"><span>♥</span></div>
           <p className="hero-copy-promise">Bevarer minder<br />Indfanger skønheden</p>
         </div>
         <div className="hero-depth-light" aria-hidden="true" />
