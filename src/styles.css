@@ -1219,15 +1219,16 @@ background: #F8F1ED;
 }
 
 .hero-copy-layer h1 {
-  top: 30.5%;
-  left: 14%;
-  width: 43%;
+  top: 27.5%;
+  left: 11.5%;
+  width: 46.5%;
   color: #aa704d;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  font-size: clamp(2rem, 3.35vw, 3.3rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: .075em;
+  white-space: nowrap;
   text-transform: uppercase;
 }
 
