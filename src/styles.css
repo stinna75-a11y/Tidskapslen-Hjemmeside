@@ -1195,6 +1195,18 @@ background: #F8F1ED;
   display: block;
 }
 
+.hero-copy-layer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .hero-logo-layer {
   position: absolute;
   top: -.5%;
@@ -1464,6 +1476,90 @@ background: #F8F1ED;
   .hero-logo-layer {
     top: 1.2%;
     width: 76%;
+  }
+
+  .hero-copy-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    color: #9b657a;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .hero-copy-layer h1,
+  .hero-copy-layer p {
+    position: absolute;
+    left: 7%;
+    width: 73%;
+    margin: 0;
+  }
+
+  .hero-copy-layer h1 {
+    top: 18.7%;
+    color: #aa704d;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.45rem, 7vw, 2rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+  }
+
+  .hero-copy-layer .hero-copy-script {
+    top: 22.8%;
+    color: #df8d9e;
+    font-family: "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+    font-size: clamp(2.35rem, 12vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    transform: rotate(-3deg);
+  }
+
+  .hero-copy-layer .hero-copy-intro {
+    top: 33.8%;
+    color: #98627a;
+    font-size: clamp(.69rem, 3.55vw, .94rem);
+    font-weight: 500;
+    line-height: 1.48;
+  }
+
+  .hero-copy-divider {
+    position: absolute;
+    top: 46.5%;
+    left: 18.5%;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    gap: 10px;
+    color: #e7a6ab;
+    font-size: .72rem;
+  }
+
+  .hero-copy-divider::before,
+  .hero-copy-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(190, 146, 116, .58);
+  }
+
+  .hero-copy-layer .hero-copy-promise {
+    top: 49.5%;
+    color: #99627a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(.88rem, 4.5vw, 1.18rem);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: .105em;
+    text-transform: uppercase;
   }
 
   .footer {

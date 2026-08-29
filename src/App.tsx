@@ -4,7 +4,7 @@ import { supabase } from "./supabase";
 import heroProduct from "./assets/stor-hex-rosa.png";
 import processIllustration from "./assets/saadan-foregaar-det.png";
 import headerBillede from "./assets/forside-uden-logo.png";
-import headerBilledeMobil from "./assets/forside-mobil-uden-logo.png";
+import headerBilledeMobil from "./assets/forside-mobil-uden-tekst-v2.png";
 import heroLogo from "./assets/hovedlogo-transparent.png";
 import anledningerBlomster from "./assets/anledninger-blomster.png";
 import product01 from "./assets/produkt-01.png";
@@ -201,7 +201,7 @@ function HeroDepthImage() {
           <source media="(max-width: 650px)" srcSet={headerBilledeMobil} />
           <img
             src={headerBillede}
-            alt="Tidskapslen – Livets blomster foreviget"
+            alt="Blomster foreviget i hjerte- og hexagonformede epoxyfigurer"
             className="hero-full-image"
           />
         </picture>
@@ -211,6 +211,18 @@ function HeroDepthImage() {
           <span className="hero-logo-sparkle logo-sparkle-one" aria-hidden="true">✦</span>
           <span className="hero-logo-sparkle logo-sparkle-two" aria-hidden="true">✦</span>
           <span className="hero-logo-sparkle logo-sparkle-three" aria-hidden="true">✦</span>
+        </div>
+        <div className="hero-copy-layer">
+          <h1>Livets blomster</h1>
+          <p className="hero-copy-script">foreviget</p>
+          <p className="hero-copy-intro">
+            Dine blomster fortæller en historie.<br />
+            Jeg bevarer dem i krystalklar epoxy og<br />
+            skaber et varigt minde om de øjeblikke, du<br />
+            aldrig vil glemme.
+          </p>
+          <div className="hero-copy-divider" aria-hidden="true"><span>♥</span></div>
+          <p className="hero-copy-promise">Bevarer minder<br />Indfanger skønheden</p>
         </div>
         <div className="hero-depth-light" aria-hidden="true" />
         <div className="hero-sparkles" aria-hidden="true">
