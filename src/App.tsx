@@ -31,27 +31,28 @@ import historienOmMig from "./assets/historien-om-mig.png";
 type Product = {
   name: string;
   image: string;
+  imageAlt: string;
   size?: string;
   price?: string;
   note?: string;
 };
 
 const products: Product[] = [
-  { name: "Hexagon stor", image: heroProduct, size: "25,8 × 22,8 × 5,2 cm", price: "Fra 3.250 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Hexagon lille", image: product02, size: "18,5 × 16,5 × 5,1 cm", price: "Fra 2.800 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Hjerte stor", image: product03, size: "19 × 22 × 5 cm", price: "Fra 2.995 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Hjerte lille", image: product04, size: "12 × 12 × 3,5 cm", price: "Fra 2.700 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Arc stor", image: product05, size: "16 × 21 × 3,5 cm", price: "Fra 3.095 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Arc lille", image: product06, size: "12 × 17 × 3,5 cm", price: "Fra 2.700 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Sommerfugl", image: product07, size: "18 × 16 × 3,5 cm", price: "Fra 1.600 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Bogstøtte", image: product08, size: "17 × 17 × 3,5 cm", price: "Fra 1.400 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Sfære stor", image: product09, size: "15 × 15 × 15 cm", price: "Fra 1.150 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Sfære mellem", image: product10, size: "12 × 12 × 12 cm", price: "Fra 950 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Sfære lille", image: product11, size: "10 × 10 × 10 cm", price: "Fra 750 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Hjerte dyb", image: product12, size: "12 × 12 × 3,5 cm", price: "Fra 550 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Hjerte", image: product13, size: "10 × 10 × 3 cm", price: "Fra 450 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Coaster", image: product14, size: "10 × 10 × 1,5 cm", price: "Fra 550 kr.", note: "Skabes individuelt med dine egne blomster." },
-  { name: "Ringholder (kegle)", image: product15, size: "10 × 5,5 cm", price: "Fra 550 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hexagon stor", image: heroProduct, imageAlt: "Stor sekskantet epoxyfigur med en buket af forevigede blomster", size: "25,8 × 22,8 × 5,2 cm", price: "Fra 3.250 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hexagon lille", image: product02, imageAlt: "Lille sekskantet epoxyminde med blomster foreviget i klar epoxy", size: "18,5 × 16,5 × 5,1 cm", price: "Fra 2.800 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hjerte stor", image: product03, imageAlt: "Stort hjerteformet epoxyminde fyldt med forevigede blomster", size: "19 × 22 × 5 cm", price: "Fra 2.995 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hjerte lille", image: product04, imageAlt: "Lille hjerteform med personlige blomster indstøbt i epoxy", size: "12 × 12 × 3,5 cm", price: "Fra 2.700 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Arc stor", image: product05, imageAlt: "Stor bueformet epoxyfigur med nænsomt forevigede blomster", size: "16 × 21 × 3,5 cm", price: "Fra 3.095 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Arc lille", image: product06, imageAlt: "Lille bueformet epoxyminde med indstøbte blomster", size: "12 × 17 × 3,5 cm", price: "Fra 2.700 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Sommerfugl", image: product07, imageAlt: "Sommerfugleformet epoxyfigur med blomster bevaret i epoxy", size: "18 × 16 × 3,5 cm", price: "Fra 1.600 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Bogstøtte", image: product08, imageAlt: "Bogstøtte i klar epoxy med personlige forevigede blomster", size: "17 × 17 × 3,5 cm", price: "Fra 1.400 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Sfære stor", image: product09, imageAlt: "Stor kugleformet epoxyfigur med blomster indstøbt som minde", size: "15 × 15 × 15 cm", price: "Fra 1.150 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Sfære mellem", image: product10, imageAlt: "Mellemstor epoxysfære med en sammensætning af forevigede blomster", size: "12 × 12 × 12 cm", price: "Fra 950 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Sfære lille", image: product11, imageAlt: "Lille rund epoxyfigur med særlige blomster bevaret indeni", size: "10 × 10 × 10 cm", price: "Fra 750 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hjerte dyb", image: product12, imageAlt: "Dybt hjerteformet epoxyminde med blomster foreviget i flere lag", size: "12 × 12 × 3,5 cm", price: "Fra 550 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Hjerte", image: product13, imageAlt: "Klassisk hjerte i epoxy med små forevigede blomster", size: "10 × 10 × 3 cm", price: "Fra 450 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Coaster", image: product14, imageAlt: "Rund coaster i epoxy dekoreret med bevarede blomster", size: "10 × 10 × 1,5 cm", price: "Fra 550 kr.", note: "Skabes individuelt med dine egne blomster." },
+  { name: "Ringholder (kegle)", image: product15, imageAlt: "Kegleformet ringholder i epoxy med fine forevigede blomster", size: "10 × 5,5 cm", price: "Fra 550 kr.", note: "Skabes individuelt med dine egne blomster." },
 ];
 
 const occasions = [
@@ -348,16 +349,32 @@ function OccasionsPage() {
 function ProductsPage() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "Produkter & priser | Blomster foreviget i epoxy – Tidskapslen";
+    if (description) {
+      description.content = "Se former, størrelser og priser på Tidskapslens håndlavede epoxyminder. Få din brudebuket eller andre særlige blomster foreviget i epoxy.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
   return (
     <main>
       <section id="produkter" className="products section">
         <div className="section-heading products-heading">
           <p className="eyebrow">Produkter & priser</p>
-          <h2>Vælg den form, der passer til dit minde.</h2>
+          <h1>Vælg formen til dine blomster foreviget i epoxy</h1>
           <p className="products-intro">
-            Alle værker er unika og skabes med dine egne blomster. Produktkortene
-            viser de aktuelle modeller, mål og priser. Der er ingen “læg i kurv” –
-            vi begynder altid med en personlig dialog.
+            Alle værker er unika og skabes med dine egne blomster – for eksempel fra din brudebuket eller et andet særligt øjeblik. Blomsterne foreviges i epoxy, og produktkortene viser de aktuelle modeller, mål og priser. Vi begynder altid med en personlig dialog, så vi sammen kan finde den form, der passer bedst til dine blomster og dit minde.
           </p>
           <p className="products-intro">Alle viste priser er inkl. moms.</p>
         </div>
@@ -369,7 +386,7 @@ function ProductsPage() {
               key={product.name}
             >
               <div className="product-image-frame">
-                <img src={product.image} alt={product.name} />
+                <img src={product.image} alt={product.imageAlt} />
               </div>
               <div className="product-card-footer">
                 <h3>{product.name}</h3>
