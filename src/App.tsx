@@ -487,26 +487,49 @@ function ProcessPage() {
 }
 
 function FaqPage() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "FAQ om blomster og brudebuketter i epoxy | Tidskapslen";
+    if (description) {
+      description.content = "Få svar på spørgsmål om at forevige din brudebuket og andre blomster i epoxy – fra forsendelse og tørring til farver, proces og færdigt resultat.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
   return (
     <main>
       <section id="faq" className="faq section">
         <div className="section-heading">
           <p className="eyebrow">Ofte stillede spørgsmål</p>
-          <h2>Det er helt naturligt at have spørgsmål.</h2>
+          <h1>Spørgsmål om at forevige blomster i epoxy</h1>
           <p className="products-intro">
-            Hvert værk er unikt, og dine blomster har deres egen historie.
-            Her er svar på nogle af de spørgsmål, kunder oftest har, inden vi taler sammen.
+            Det er helt naturligt at have spørgsmål. Hvert værk er unikt, og dine blomster har
+            deres egen historie. Her finder du svar på nogle af de spørgsmål, der ofte opstår,
+            når en brudebuket eller andre særlige blomster skal bevares og foreviges i epoxy.
           </p>
         </div>
 
         <div className="faq-grid">
           <article className="faq-card">
-            <h3>Hvor hurtigt skal blomsterne frem?</h3>
-            <p>Jo friskere blomsterne er, når de kommer frem, desto bedre udgangspunkt har vi. Kontakt mig gerne så tidligt som muligt, så vi kan aftale den bedste løsning.</p>
+            <h3>Hvor hurtigt skal jeg sende min brudebuket eller mine blomster?</h3>
+            <p>Jo friskere blomsterne er, når de kommer frem, desto bedre udgangspunkt har vi. Kontakt mig gerne så tidligt som muligt, helst allerede inden den særlige dag, så vi kan aftale modtagelse eller forsendelse og give blomsterne de bedste betingelser for bevaring.</p>
           </article>
           <article className="faq-card">
-            <h3>Kan jeg sende blomsterne med posten?</h3>
+            <h3>Kan jeg sende min brudebuket eller blomster med posten?</h3>
             <p>Ja. Vi aftaler sammen, hvordan de pakkes og sendes mest nænsomt. Du får en enkel vejledning, så blomsterne er bedst muligt beskyttet under transporten.</p>
+          </article>
+          <article className="faq-card">
+            <h3>Skal blomsterne tørres, inden jeg sender dem?</h3>
+            <p>Nej. Send eller aflever blomsterne så friske som muligt, medmindre vi har aftalt andet. Jeg står for tørring og forberedelse af blomsterne, så de får de bedst mulige betingelser, inden de foreviges i epoxy.</p>
           </article>
           <article className="faq-card">
             <h3>Bliver farverne præcis som i den friske buket?</h3>
@@ -517,7 +540,7 @@ function FaqPage() {
             <p>Mange blomster egner sig rigtig fint, men nogle arter og former kræver særlige hensyn. Jeg vurderer altid blomsterne individuelt. Hvis enkelte blomster eller plantedele ved modtagelsen er angrebet af råd eller mug, kraftigt nedbrudte eller på anden måde ikke egner sig til konservering, kan de blive frasorteret og kasseret for at beskytte kvaliteten af det færdige værk.</p>
           </article>
           <article className="faq-card">
-            <h3>Hvor lang tid tager det?</h3>
+            <h3>Hvor lang tid tager det at forevige blomster i epoxy?</h3>
             <p>Processen kan ikke forhastes. Blomsterne skal først tørres og klargøres, og epoxyarbejdet udføres i flere trin. Du får et realistisk forventet tidsforløb, når vi har talt om dit projekt.</p>
           </article>
           <article className="faq-card">
