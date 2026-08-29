@@ -382,7 +382,13 @@ function ProductsPage() {
         <div className="product-grid">
           {products.map((product) => (
             <article
-              className={`product-card${product.name === "Arc stor" ? " product-card--arc-stor" : ""}`}
+              className={[
+                "product-card",
+                product.name === "Arc stor" ? "product-card--arc-stor" : "",
+                product.name === "Hjerte stor" ? "product-card--hjerte-stor" : "",
+                product.name === "Sfære mellem" ? "product-card--sfaere-mellem" : "",
+                product.name === "Sfære lille" ? "product-card--sfaere-lille" : "",
+              ].filter(Boolean).join(" ")}
               key={product.name}
             >
               <div className="product-image-frame">

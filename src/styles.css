@@ -786,6 +786,17 @@ background: #F8F1ED;
   object-position: center 72%;
 }
 
+.product-card--hjerte-stor .product-image-frame img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.product-card--sfaere-mellem .product-image-frame img,
+.product-card--sfaere-lille .product-image-frame img {
+  object-position: center 60%;
+  transform: scaleX(1.16);
+}
+
 .product-card-footer {
   display: grid;
   gap: 14px;
