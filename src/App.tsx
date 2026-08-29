@@ -56,16 +56,16 @@ const products: Product[] = [
 
 const occasions = [
   {
-    title: "Brylluppet",
-    text: "Forevig blomsterne fra en af livets største dage i et personligt værk, der kan følge jer videre gennem livet.",
+    title: "Forevig din brudebuket",
+    text: "Bevar blomsterne fra en af livets største dage. Din brudebuket tørres nænsomt og foreviges i krystalklar epoxy som et personligt minde, der kan følge jer videre gennem livet.",
   },
   {
-    title: "Et menneske, du savner",
-    text: "Bevar blomster fra en afsked eller mindestund som et nænsomt og varigt minde om et menneske, der betyder noget.",
+    title: "Blomster til minde om en, du savner",
+    text: "Bevar blomster fra en begravelse, afsked eller mindestund i epoxy som et nænsomt og varigt minde om et menneske, der betyder noget.",
   },
   {
     title: "Livets særlige øjeblikke",
-    text: "Blomster fra jubilæer, dåb, fødselsdage og andre begivenheder kan få nyt liv som et unikt epoxyminde.",
+    text: "Blomster fra jubilæer, dåb, konfirmationer, fødselsdage og andre særlige begivenheder kan foreviges i epoxy og få nyt liv som et personligt minde.",
   },
 ];
 
@@ -320,10 +320,10 @@ function OccasionsPage() {
           <img
   className="anledninger-blomster"
   src={anledningerBlomster}
-  alt=""
+          alt=""
 />
           <p className="eyebrow">Når blomster betyder mere</p>
-          <h2>Et minde kan begynde med en enkelt blomst.</h2>
+          <h1>Et minde kan begynde med en enkelt blomst.</h1>
         </div>
         <div className="occasion-grid">
           {occasions.map((item) => (
@@ -333,6 +333,12 @@ function OccasionsPage() {
               <p>{item.text}</p>
             </article>
           ))}
+        </div>
+        <div className="occasions-detail">
+          <h2>Blomster, der fortjener at blive bevaret</h2>
+          <p>
+            Uanset om blomsterne kommer fra din brudebuket, en særlig fejring eller et menneske, du ønsker at mindes, kan de fortælle en historie længe efter dagen er forbi. Hos Tidskapslen bliver dine egne blomster tørret og nænsomt indstøbt i krystalklar epoxy, så de kan bevares som et personligt minde.
+          </p>
         </div>
       </section>
     </main>
