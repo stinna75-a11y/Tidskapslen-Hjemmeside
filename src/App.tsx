@@ -436,16 +436,34 @@ function ProductsPage() {
 }
 
 function ProcessPage() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "Sådan foreviges dine blomster i epoxy | Tidskapslen";
+    if (description) {
+      description.content = "Se hvordan din brudebuket eller andre særlige blomster bliver forberedt, designet og nænsomt foreviget i epoxy hos Tidskapslen.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
   return (
     <main>
       <section id="processen" className="process section">
         <div className="section-heading process-heading">
           <p className="eyebrow">Sådan foregår det</p>
-          <h2>Fra din buket til et minde for livet</h2>
+          <h1>Fra din buket til et minde for livet</h1>
           <p className="products-intro process-intro">
-            Hver buket bærer på en historie. Når dine blomster ankommer til Tidskapslen,
-            bliver de behandlet med omhu gennem hele processen – fra den første gennemgang
-            til det færdige minde.
+            Hver buket bærer på en historie. Når din brudebuket eller andre særlige blomster
+            ankommer til Tidskapslen, bliver de behandlet med omhu gennem hele processen – fra
+            den første gennemgang og forberedelse til blomsterne foreviges i epoxy som et færdigt minde.
           </p>
         </div>
         <div className="process-layout">
