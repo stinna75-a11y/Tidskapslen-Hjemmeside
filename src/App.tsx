@@ -213,8 +213,11 @@ function HeroDepthImage() {
           <span className="hero-logo-sparkle logo-sparkle-three" aria-hidden="true">✦</span>
         </div>
         <div className="hero-copy-layer">
-          <h1>Livets blomster</h1>
-          <p className="hero-copy-script">foreviget</p>
+          <h1>
+            <span className="hero-copy-title-main">Livets blomster</span>{" "}
+            <span className="hero-copy-title-script">foreviget</span>
+            <span className="hero-copy-title-tail"> i epoxy</span>
+          </h1>
           <p className="hero-copy-intro">
             Dine blomster fortæller en historie. Jeg bevarer dem i krystalklar epoxy og skaber et varigt minde om de øjeblikke, du aldrig vil glemme.
           </p>
