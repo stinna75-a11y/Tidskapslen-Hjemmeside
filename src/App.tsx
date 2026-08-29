@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-
 import { supabase } from "./supabase";
 import heroProduct from "./assets/stor-hex-rosa.png";
 import processIllustration from "./assets/saadan-foregaar-det.png";
-import headerBillede from "./assets/forside-uden-logo.png";
+import headerBillede from "./assets/forside-desktop-uden-tekst-v2.png";
 import headerBilledeMobil from "./assets/forside-mobil-uden-tekst-v2.png";
 import heroLogo from "./assets/hovedlogo-transparent.png";
 import anledningerBlomster from "./assets/anledninger-blomster.png";
