@@ -305,9 +305,11 @@ h1 em {
   align-items: start;
 }
 
+.story h1,
 .story h2,
 .section-heading h1,
 .section-heading h2,
+.contact h1,
 .contact h2 {
   margin: 0;
   color: #5f5358;

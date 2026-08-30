@@ -255,6 +255,24 @@ function HomePage() {
 }
 
 function StoryPage() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "Historien om Tidskapslen | Blomster foreviget i epoxy";
+    if (description) {
+      description.content = "Mød mennesket bag Tidskapslen og læs historien om håndlavede epoxyminder skabt af dine egne blomster, brudebuketter og særlige minder.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
   return (
     <main className="history-page">
       <section id="historien" className="story section">
@@ -262,7 +280,7 @@ function StoryPage() {
 
         <div className="section-kicker">Tidskapslen</div>
         <div className="story-grid">
-          <h2>Blomster bærer på historier</h2>
+          <h1>Blomster bærer på historier</h1>
           <div>
             <p>
               En brudebuket. Blomsterne fra en afsked. En buket fra et øjeblik,
@@ -585,6 +603,24 @@ function ContactPage() {
   const [formMessage, setFormMessage] = useState("");
 
   useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "Kontakt Tidskapslen | Fortæl mig om dine blomster";
+    if (description) {
+      description.content = "Kontakt Tidskapslen om din brudebuket eller andre særlige blomster, du ønsker foreviget i epoxy. Send en uforpligtende forespørgsel.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const selectedProduct = (location.state as { productName?: string } | null)?.productName;
     if (selectedProduct) {
       setForm((current) => ({ ...current, productInterest: selectedProduct }));
@@ -667,7 +703,7 @@ function ContactPage() {
         <div className="contact-layout">
           <div className="contact-intro">
             <p className="eyebrow">Lad os tale om dine blomster</p>
-            <h2>Fortæl mig lidt om dit minde.</h2>
+            <h1>Fortæl mig lidt om dit minde.</h1>
             <p>
               Hvert projekt begynder med en personlig dialog. Formularen er en
               uforpligtende forespørgsel – ikke en bindende bestilling.
