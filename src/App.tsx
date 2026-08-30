@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "./supabase";
 import heroProduct from "./assets/stor-hex-rosa.png";
 import processIllustration from "./assets/saadan-foregaar-det.png";
@@ -25,6 +25,8 @@ import product15 from "./assets/produkt-15.png";
 import signature from "./assets/Min signatur.png";
 import historienGren from "./assets/historien-gren.png";
 import historienOmMig from "./assets/historien-om-mig.png";
+import weddingBouquetVideo from "./assets/brudebuket-produktvideo.mp4";
+import weddingBouquetVideoPoster from "./assets/brudebuket-produktvideo-poster.jpg";
 
 
 
@@ -59,6 +61,7 @@ const occasions = [
   {
     title: "Forevig din brudebuket",
     text: "Bevar blomsterne fra en af livets største dage. Din brudebuket tørres nænsomt og foreviges i krystalklar epoxy som et personligt minde, der kan følge jer videre gennem livet.",
+    href: "/forevig-din-brudebuket",
   },
   {
     title: "Blomster til minde om en, du savner",
@@ -350,6 +353,11 @@ function OccasionsPage() {
               <span className="petal">✦</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
+              {item.href && (
+                <Link className="occasion-link" to={item.href}>
+                  Læs mere om forevigelse af brudebuketter →
+                </Link>
+              )}
             </article>
           ))}
         </div>
@@ -579,6 +587,202 @@ function FaqPage() {
           <p className="eyebrow">Vigtigt at vide</p>
           <h3>Dit værk skabes af naturmaterialer.</h3>
           <p>Små farveændringer, luftbobler og naturlige variationer kan forekomme. Det er ikke masseproduktion – det er håndværk, skabt omkring dine egne blomster.</p>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function WeddingBouquetPage() {
+  const navigate = useNavigate();
+  const productVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "Forevig din brudebuket i epoxy | Tidskapslen";
+    if (description) {
+      description.content = "Bevar blomsterne fra din bryllupsdag. Hos Tidskapslen tørres din brudebuket nænsomt og foreviges i krystalklar epoxy som et personligt minde.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = productVideoRef.current;
+    if (!video) return;
+
+    let isOnScreen = false;
+
+    const startCalmPlayback = () => {
+      video.defaultPlaybackRate = 0.7;
+      video.playbackRate = 0.7;
+      void video.play().catch(() => undefined);
+    };
+
+    const resumeWhenActive = () => {
+      if (document.visibilityState === "visible" && isOnScreen) {
+        startCalmPlayback();
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isOnScreen = entry.isIntersecting;
+        if (isOnScreen) startCalmPlayback();
+      },
+      { threshold: 0.15 },
+    );
+
+    observer.observe(video);
+    startCalmPlayback();
+    video.addEventListener("loadedmetadata", startCalmPlayback);
+    video.addEventListener("canplay", startCalmPlayback);
+    document.addEventListener("visibilitychange", resumeWhenActive);
+    window.addEventListener("focus", resumeWhenActive);
+    window.addEventListener("pageshow", resumeWhenActive);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("loadedmetadata", startCalmPlayback);
+      video.removeEventListener("canplay", startCalmPlayback);
+      document.removeEventListener("visibilitychange", resumeWhenActive);
+      window.removeEventListener("focus", resumeWhenActive);
+      window.removeEventListener("pageshow", resumeWhenActive);
+    };
+  }, []);
+
+  return (
+    <main className="wedding-page">
+      <section className="wedding-landing-hero section">
+        <div className="wedding-landing-inner">
+          <p className="eyebrow">DIN BRUDEBUKET FORTJENER AT BLIVE HUSKET</p>
+          <h1>Forevig din brudebuket i epoxy</h1>
+          <p className="wedding-lead">
+            Din brudebuket er mere end blomster. Den er en del af en dag, du aldrig får igen. Hos Tidskapslen kan udvalgte blomster fra din buket tørres nænsomt og foreviges i krystalklar epoxy som et personligt minde, du kan beholde resten af livet.
+          </p>
+          <div className="hero-actions wedding-actions">
+            <button className="primary" type="button" onClick={() => navigate("/produkter")}>Se former &amp; priser</button>
+            <button className="secondary" type="button" onClick={() => navigate("/kontakt")}>Fortæl mig om din brudebuket</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="wedding-video-section section" aria-labelledby="wedding-video-title">
+        <div className="wedding-video-inner">
+          <figure className="wedding-video-frame">
+            <video
+              ref={productVideoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={weddingBouquetVideoPoster}
+              aria-label="Brudebuket foreviget i klar epoxy set fra flere vinkler"
+            >
+              <source src={weddingBouquetVideo} type="video/mp4" />
+            </video>
+          </figure>
+          <div className="wedding-video-copy">
+            <h2 id="wedding-video-title">Dine blomster. Dit værk.</h2>
+            <p>Hver buket er forskellig. Derfor bliver hvert værk det også.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="wedding-section section">
+        <div className="wedding-section-inner wedding-text-block">
+          <p className="eyebrow">EFTER DEN STORE DAG</p>
+          <h2>Fra brudebuket til et minde for livet</h2>
+          <p>Når brylluppet er forbi, begynder blomsterne hurtigt at forandre sig. Derfor er det en god idé at tænke på forevigelsen allerede inden brylluppet eller kontakte mig så hurtigt som muligt bagefter.</p>
+          <p>Du behøver ikke selv tørre buketten. Blomsterne afleveres eller sendes så friske som muligt, hvorefter jeg tørrer og forbereder dem nænsomt til det værk, vi har aftalt.</p>
+        </div>
+      </section>
+
+      <section className="wedding-section wedding-section-tinted section">
+        <div className="wedding-section-inner">
+          <div className="wedding-section-heading">
+            <p className="eyebrow">FRA BUKET TIL VÆRK</p>
+            <h2>Sådan foregår det</h2>
+          </div>
+          <div className="wedding-step-grid">
+            <article className="wedding-card">
+              <h3>1 · Kontakt mig</h3>
+              <p>Fortæl mig om brylluppet, datoen og hvilken buket du skal have. Du behøver ikke have valgt produkt endnu.</p>
+            </article>
+            <article className="wedding-card">
+              <h3>2 · Buketten kommer til Tidskapslen</h3>
+              <p>Efter brylluppet afleveres eller sendes blomsterne så friske som muligt efter vores aftale.</p>
+            </article>
+            <article className="wedding-card">
+              <h3>3 · Blomsterne tørres og designes</h3>
+              <p>Jeg udvælger og tørrer blomsterne nænsomt og sammensætter dem med udgangspunkt i den form og det udtryk, vi har aftalt.</p>
+            </article>
+            <article className="wedding-card">
+              <h3>4 · Din brudebuket foreviges i epoxy</h3>
+              <p>Blomsterne indstøbes omhyggeligt i krystalklar epoxy lag for lag og bliver til et personligt værk skabt af dine egne bryllupsblomster.</p>
+            </article>
+          </div>
+          <button className="secondary wedding-process-link" type="button" onClick={() => navigate("/processen")}>Læs mere om hele processen →</button>
+        </div>
+      </section>
+
+      <section className="wedding-section section">
+        <div className="wedding-section-inner wedding-info-grid">
+          <article className="wedding-info-card">
+            <h2>Hvilken del af brudebuketten kan bevares?</h2>
+            <p>Det er ikke nødvendigvis hele buketten, der skal indgå i ét værk. Afhængigt af blomsterne og den form, du vælger, udvælger jeg de blomster og detaljer, der egner sig bedst til kompositionen.</p>
+            <p>Nogle vælger ét større værk med flere af bukettens blomster. Andre vælger flere mindre minder, som kan gives videre til eksempelvis en mor, svigermor eller en anden, der var en del af dagen.</p>
+          </article>
+          <article className="wedding-info-card">
+            <h2>Hvad sker der med blomsternes farver?</h2>
+            <p>Blomster er naturmaterialer, og tørring vil påvirke deres farver og udtryk. Nogle blomster bevarer farven flot, mens andre bliver mørkere, lysere eller ændrer nuance.</p>
+            <p>Det er en naturlig del af processen. Målet er ikke at få blomsterne til at se kunstige og nyplukkede ud, men at bevare noget ægte fra din buket og din dag.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="wedding-section wedding-section-tinted section">
+        <div className="wedding-section-inner">
+          <div className="wedding-section-heading">
+            <h2>Spørgsmål om at forevige din brudebuket</h2>
+          </div>
+          <div className="wedding-faq-grid">
+            <article className="wedding-card">
+              <h3>Hvornår skal jeg kontakte Tidskapslen?</h3>
+              <p>Du må meget gerne kontakte mig allerede inden brylluppet. Så kan vi på forhånd aftale produkt, aflevering eller forsendelse og hvad der skal ske med buketten efter den store dag. Har brylluppet allerede været, så kontakt mig hurtigst muligt.</p>
+            </article>
+            <article className="wedding-card">
+              <h3>Skal jeg tørre min brudebuket selv?</h3>
+              <p>Nej. Medmindre vi har aftalt andet, skal buketten afleveres eller sendes så frisk som muligt. Jeg står for tørringen og forberedelsen af blomsterne.</p>
+            </article>
+            <article className="wedding-card">
+              <h3>Kan alle blomster fra en brudebuket bruges?</h3>
+              <p>Mange blomster egner sig fint til forevigelse, men forskellige sorter reagerer forskelligt på tørring og epoxy. Jeg vurderer altid buketten individuelt og udvælger de blomster, der giver det bedste resultat.</p>
+            </article>
+            <article className="wedding-card">
+              <h3>Kan jeg få andre minder fra brylluppet med?</h3>
+              <p>I mange tilfælde ja. Afhængigt af det valgte produkt kan vi tale om eksempelvis tekst, navn og dato, et fotografi eller en lille personlig genstand.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="wedding-final-cta section">
+        <div className="wedding-final-inner">
+          <p className="eyebrow">ET PERSONLIGT MINDE</p>
+          <h2>Din buket har allerede en historie</h2>
+          <p className="wedding-final-emphasis">Lad den blive ved med at fortælle den.</p>
+          <p>Fortæl mig lidt om dit bryllup og din brudebuket. Det er helt uforpligtende, og du behøver ikke vide endnu, hvilket produkt du ønsker.</p>
+          <button className="primary" type="button" onClick={() => navigate("/kontakt")}>Fortæl mig om min brudebuket</button>
         </div>
       </section>
     </main>
@@ -896,6 +1100,7 @@ function App() {
       <Route path="/produkter" element={<SiteLayout><ProductsPage /></SiteLayout>} />
       <Route path="/processen" element={<SiteLayout><ProcessPage /></SiteLayout>} />
       <Route path="/faq" element={<SiteLayout><FaqPage /></SiteLayout>} />
+      <Route path="/forevig-din-brudebuket" element={<SiteLayout><WeddingBouquetPage /></SiteLayout>} />
       <Route path="/kontakt" element={<SiteLayout><ContactPage /></SiteLayout>} />
       <Route path="/handelsbetingelser" element={<SiteLayout><HandelsbetingelserPage /></SiteLayout>} />
       <Route path="/privatlivspolitik" element={<SiteLayout><PrivatlivspolitikPage /></SiteLayout>} />
