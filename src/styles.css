@@ -1338,10 +1338,10 @@ background: #F8F1ED;
 
 .hero-logo-layer {
   position: absolute;
-  top: -17%;
+  top: -12%;
   left: 50%;
   z-index: 3;
-  width: 83%;
+  width: 70%;
   transform: translateX(-50%) translateZ(24px);
   filter: drop-shadow(0 6px 14px rgba(103,71,73,.13));
   animation: heroLogoFloat 7s ease-in-out infinite;
@@ -1603,8 +1603,8 @@ background: #F8F1ED;
   }
 
   .hero-logo-layer {
-    top: -1%;
-    width: 153%;
+    top: 1%;
+    width: 130%;
   }
 
   .hero-copy-layer {
