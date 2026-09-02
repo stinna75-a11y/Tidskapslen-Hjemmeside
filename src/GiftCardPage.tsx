@@ -6,6 +6,14 @@ const fixedAmounts = [500, 1000, 1500] as const;
 
 type DeliveryTarget = "Køber" | "Modtager";
 
+type GiftCardOrderResponse = {
+  ok?: boolean;
+  id?: string;
+  gift_card_number?: string;
+  email_sent?: boolean;
+  error?: string;
+};
+
 function formatAmount(value: number) {
   return `${value.toLocaleString("da-DK")} kr.`;
 }
@@ -20,9 +28,11 @@ export function GiftCardPage() {
   const [recipientEmail, setRecipientEmail] = useState("");
   const [personalMessage, setPersonalMessage] = useState("");
   const [deliveryTarget, setDeliveryTarget] = useState<DeliveryTarget>("Køber");
+  const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [confirmationNumber, setConfirmationNumber] = useState("");
+  const [confirmationEmailSent, setConfirmationEmailSent] = useState<boolean | null>(null);
 
   const amount = useMemo(
     () => selectedAmount === "custom" ? Number(customAmount.replace(",", ".")) : selectedAmount,
@@ -48,6 +58,7 @@ export function GiftCardPage() {
     event.preventDefault();
     setErrorMessage("");
     setConfirmationNumber("");
+    setConfirmationEmailSent(null);
 
     if (!supabase) {
       setErrorMessage("Bestillingsformularen er midlertidigt utilgængelig. Prøv igen lidt senere.");
@@ -63,25 +74,44 @@ export function GiftCardPage() {
     }
 
     setSubmitting(true);
-    const { data, error } = await supabase.rpc("create_gift_card_order", {
-      p_buyer_name: buyerName,
-      p_buyer_email: buyerEmail,
-      p_buyer_phone: buyerPhone,
-      p_recipient_name: recipientName,
-      p_recipient_email: recipientEmail,
-      p_personal_message: personalMessage,
-      p_delivery_target: deliveryTarget,
-      p_amount: amount,
-    });
-    setSubmitting(false);
+    try {
+      const { data, error } = await supabase.functions.invoke<GiftCardOrderResponse>("create-gift-card-order", {
+        body: {
+          buyer_name: buyerName,
+          buyer_email: buyerEmail,
+          buyer_phone: buyerPhone,
+          recipient_name: recipientName,
+          recipient_email: recipientEmail,
+          personal_message: personalMessage,
+          delivery_target: deliveryTarget,
+          amount,
+          website,
+        },
+      });
 
-    if (error) {
-      setErrorMessage(error.message || "Bestillingen kunne ikke gemmes. Prøv igen.");
-      return;
+      if (error) {
+        let message = error.message || "Bestillingen kunne ikke gemmes. Prøv igen.";
+        const context = (error as { context?: Response }).context;
+        if (context) {
+          const payload = await context.clone().json().catch(() => null) as GiftCardOrderResponse | null;
+          if (payload?.error) message = payload.error;
+        }
+        setErrorMessage(message);
+        return;
+      }
+
+      if (!data?.ok || !data.gift_card_number) {
+        setErrorMessage(data?.error || "Bestillingen kunne ikke gemmes. Prøv igen.");
+        return;
+      }
+
+      setConfirmationNumber(data.gift_card_number);
+      setConfirmationEmailSent(data.email_sent !== false);
+    } catch {
+      setErrorMessage("Bestillingen kunne ikke gemmes. Prøv igen.");
+    } finally {
+      setSubmitting(false);
     }
-
-    const created = Array.isArray(data) ? data[0] : data;
-    setConfirmationNumber(created?.gift_card_number ?? "");
   }
 
   return (
@@ -116,10 +146,25 @@ export function GiftCardPage() {
             <span aria-hidden="true">✦</span>
             <h2>Tak for din bestilling</h2>
             <p>Jeg sender betalingsoplysninger og gavekortet til dig hurtigst muligt.</p>
+            {confirmationEmailSent === false && (
+              <p role="alert">
+                Bestillingen er modtaget, men bekræftelsesmailen kunne ikke sendes. Kontakt gerne Tidskapslen, hvis du ikke hører fra mig.
+              </p>
+            )}
             <small>Din reference er {confirmationNumber}.</small>
           </div>
         ) : (
           <form className="gift-card-form" onSubmit={submitOrder}>
+            <label className="honeypot" aria-hidden="true">
+              <span>Website</span>
+              <input
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+              />
+            </label>
             <fieldset className="gift-card-amount-fieldset">
               <legend>Gavekortets beløb</legend>
               <div className="gift-card-amount-options">
