@@ -27,6 +27,8 @@ import historienGren from "./assets/historien-gren.png";
 import historienOmMig from "./assets/historien-om-mig.png";
 import weddingBouquetVideo from "./assets/brudebuket-produktvideo.mp4";
 import weddingBouquetVideoPoster from "./assets/brudebuket-produktvideo-poster.jpg";
+import { GiftCardPage } from "./GiftCardPage";
+import "./gift-card.css";
 
 
 
@@ -89,6 +91,7 @@ const navItems = [
   { label: "Produkter & priser", path: "/produkter" },
   { label: "Sådan foregår det", path: "/processen" },
   { label: "FAQ", path: "/faq" },
+  { label: "Gavekort", path: "/gavekort" },
   { label: "Kontakt", path: "/kontakt" },
 ];
 
@@ -1100,6 +1103,7 @@ function App() {
       <Route path="/produkter" element={<SiteLayout><ProductsPage /></SiteLayout>} />
       <Route path="/processen" element={<SiteLayout><ProcessPage /></SiteLayout>} />
       <Route path="/faq" element={<SiteLayout><FaqPage /></SiteLayout>} />
+      <Route path="/gavekort" element={<SiteLayout><GiftCardPage /></SiteLayout>} />
       <Route path="/forevig-din-brudebuket" element={<SiteLayout><WeddingBouquetPage /></SiteLayout>} />
       <Route path="/kontakt" element={<SiteLayout><ContactPage /></SiteLayout>} />
       <Route path="/handelsbetingelser" element={<SiteLayout><HandelsbetingelserPage /></SiteLayout>} />
