@@ -256,6 +256,19 @@ function HomePage() {
 <section className="hero-image-only">
   <HeroDepthImage />
 </section>
+      <section className="home-wedding-reservation section" aria-labelledby="home-wedding-reservation-title">
+        <div className="home-wedding-reservation-inner">
+          <p className="eyebrow">SKAL I GIFTES?</p>
+          <h2 id="home-wedding-reservation-title">Reservér plads til jeres brudebuket</h2>
+          <p>
+            I kan allerede nu forespørge på en plads til at få jeres brudebuket foreviget.
+            I behøver ikke have valgt form eller størrelse endnu – det vigtigste er jeres dato.
+          </p>
+          <button className="secondary" type="button" onClick={() => navigate("/reserver-bryllupsdato")}>
+            Reservér jeres bryllupsdato →
+          </button>
+        </div>
+      </section>
     </main>
   );
 }
@@ -673,7 +686,7 @@ function WeddingBouquetPage() {
           </p>
           <div className="hero-actions wedding-actions">
             <button className="primary" type="button" onClick={() => navigate("/produkter")}>Se former &amp; priser</button>
-            <button className="secondary" type="button" onClick={() => navigate("/kontakt")}>Fortæl mig om din brudebuket</button>
+            <button className="secondary" type="button" onClick={() => navigate("/reserver-bryllupsdato")}>Reservér jeres bryllupsdato</button>
           </div>
         </div>
       </section>
@@ -785,7 +798,185 @@ function WeddingBouquetPage() {
           <h2>Din buket har allerede en historie</h2>
           <p className="wedding-final-emphasis">Lad den blive ved med at fortælle den.</p>
           <p>Fortæl mig lidt om dit bryllup og din brudebuket. Det er helt uforpligtende, og du behøver ikke vide endnu, hvilket produkt du ønsker.</p>
-          <button className="primary" type="button" onClick={() => navigate("/kontakt")}>Fortæl mig om min brudebuket</button>
+          <button className="primary" type="button" onClick={() => navigate("/reserver-bryllupsdato")}>Reservér jeres bryllupsdato</button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function WeddingReservationPage() {
+  const [form, setForm] = useState({
+    names: "",
+    email: "",
+    phone: "",
+    weddingDate: "",
+    productInterest: "",
+    giftInterest: "",
+    message: "",
+    website: "",
+  });
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [formMessage, setFormMessage] = useState("");
+
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = description?.content;
+
+    document.title = "Reservér jeres bryllupsdato | Tidskapslen";
+    if (description) {
+      description.content = "Forespørg på en plads til at få jeres brudebuket foreviget i epoxy hos Tidskapslen. Forespørgslen er uforpligtende.";
+    }
+
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription !== undefined) description.content = previousDescription;
+    };
+  }, []);
+
+  const updateField = (field: keyof typeof form, value: string) => {
+    setForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const submitReservation = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (form.website) {
+      setFormStatus("success");
+      return;
+    }
+
+    if (!form.names.trim() || !form.email.trim() || !form.phone.trim() || !form.weddingDate || !form.giftInterest) {
+      setFormStatus("error");
+      setFormMessage("Udfyld venligst alle felter markeret med *.");
+      return;
+    }
+
+    if (!supabase) {
+      setFormStatus("error");
+      setFormMessage("Formularen er endnu ikke koblet til Tidskapslen Studio på denne installation.");
+      return;
+    }
+
+    setFormStatus("sending");
+    setFormMessage("Sender jeres forespørgsel...");
+
+    const { error } = await supabase.from("website_inquiries").insert({
+      name: form.names.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      occasion: "Datoreservation · Bryllup",
+      event_date: form.weddingDate,
+      product_interest: form.productInterest || null,
+      add_ons: [`Mindre værker/gaver: ${form.giftInterest}`],
+      message: form.message.trim() || "Ingen yderligere besked.",
+      status: "ny",
+    });
+
+    if (error) {
+      setFormStatus("error");
+      setFormMessage("Jeres forespørgsel kunne ikke sendes. Prøv gerne igen, eller kontakt Tidskapslen direkte.");
+      return;
+    }
+
+    setFormStatus("success");
+    setFormMessage("");
+  };
+
+  return (
+    <main className="reservation-page">
+      <section className="reservation-hero section">
+        <div className="reservation-hero-inner">
+          <p className="eyebrow">JERES BLOMSTER FORTJENER AT BLIVE HUSKET</p>
+          <h1>Reservér jeres bryllupsdato</h1>
+          <p className="reservation-lead">
+            Skal I giftes, kan I allerede nu forespørge på en plads til at få jeres brudebuket
+            foreviget hos Tidskapslen. Jeg tager kun et begrænset antal buketter ind ad gangen,
+            fordi hvert værk skabes i hånden og får den tid og omhu, det kræver.
+          </p>
+        </div>
+      </section>
+
+      <section className="reservation-content section">
+        <div className="reservation-layout">
+          <div className="reservation-intro">
+            <p className="eyebrow">DET VIGTIGSTE ER JERES DATO</p>
+            <h2>I behøver ikke have valgt jeres værk endnu.</h2>
+            <p>Form, størrelse og de små personlige detaljer finder vi ud af sammen.</p>
+            <div className="reservation-note">
+              <span aria-hidden="true">✦</span>
+              <p><strong>Forespørgslen er uforpligtende.</strong> Datoen er først reserveret, når I har modtaget en personlig bekræftelse fra Tidskapslen.</p>
+            </div>
+          </div>
+
+          {formStatus === "success" ? (
+            <div className="reservation-success" role="status">
+              <span className="reservation-success-mark" aria-hidden="true">✦</span>
+              <p className="eyebrow">TAK FOR JERES FORESPØRGSEL</p>
+              <h2>Jeres bryllupsdato er landet trygt hos mig.</h2>
+              <p>Jeg vender personligt tilbage hurtigst muligt og fortæller, om der er plads omkring jeres dato.</p>
+              <p>Først når I har modtaget min bekræftelse, er pladsen reserveret.</p>
+              <p className="reservation-signoff">Jeg glæder mig til at høre mere om jeres bryllup og de blomster, I har valgt til dagen.<br /><strong>Kærlig hilsen<br />Stinna · Tidskapslen</strong></p>
+            </div>
+          ) : (
+            <form className="inquiry-form reservation-form" onSubmit={submitReservation}>
+              <div className="form-grid">
+                <label>
+                  <span>Brudeparrets navne *</span>
+                  <input value={form.names} onChange={(event) => updateField("names", event.target.value)} placeholder="Jeres navne" autoComplete="name" />
+                </label>
+                <label>
+                  <span>E-mail *</span>
+                  <input type="email" value={form.email} onChange={(event) => updateField("email", event.target.value)} placeholder="jeres@email.dk" autoComplete="email" />
+                </label>
+                <label>
+                  <span>Telefonnummer *</span>
+                  <input type="tel" value={form.phone} onChange={(event) => updateField("phone", event.target.value)} placeholder="Telefonnummer" autoComplete="tel" />
+                </label>
+                <label>
+                  <span>Bryllupsdato *</span>
+                  <input type="date" value={form.weddingDate} onChange={(event) => updateField("weddingDate", event.target.value)} />
+                </label>
+              </div>
+
+              <label>
+                <span>Hvilket værk overvejer I?</span>
+                <select value={form.productInterest} onChange={(event) => updateField("productInterest", event.target.value)}>
+                  <option value="">Vi ved det ikke endnu</option>
+                  {products.map((product) => <option key={product.name} value={product.name}>{product.name}</option>)}
+                </select>
+              </label>
+
+              <fieldset className="gift-interest-options">
+                <legend>Vil I høre om mindre værker eller gaver af bryllupsblomsterne? *</legend>
+                <div className="gift-interest-grid">
+                  {["Ja", "Nej", "Måske"].map((answer) => (
+                    <label key={answer} className="radio-label">
+                      <input type="radio" name="giftInterest" value={answer} checked={form.giftInterest === answer} onChange={(event) => updateField("giftInterest", event.target.value)} />
+                      <span>{answer}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <label className="message-field">
+                <span>Besked <small>(valgfrit)</small></span>
+                <textarea rows={6} value={form.message} onChange={(event) => updateField("message", event.target.value)} placeholder="Fortæl gerne lidt om jeres bryllup, buket eller ønsker..." />
+              </label>
+
+              <label className="honeypot" aria-hidden="true">
+                <span>Website</span>
+                <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => updateField("website", event.target.value)} />
+              </label>
+
+              <button type="submit" className="primary submit-button" disabled={formStatus === "sending"}>
+                {formStatus === "sending" ? "Sender..." : "Forespørg på jeres dato"}
+              </button>
+              {formMessage && <p className={`form-message ${formStatus}`} role={formStatus === "error" ? "alert" : "status"}>{formMessage}</p>}
+              <small className="form-note">Forespørgslen er uforpligtende. Datoen er først reserveret efter personlig bekræftelse fra Tidskapslen.</small>
+            </form>
+          )}
         </div>
       </section>
     </main>
@@ -1105,6 +1296,7 @@ function App() {
       <Route path="/faq" element={<SiteLayout><FaqPage /></SiteLayout>} />
       <Route path="/gavekort" element={<SiteLayout><GiftCardPage /></SiteLayout>} />
       <Route path="/forevig-din-brudebuket" element={<SiteLayout><WeddingBouquetPage /></SiteLayout>} />
+      <Route path="/reserver-bryllupsdato" element={<SiteLayout><WeddingReservationPage /></SiteLayout>} />
       <Route path="/kontakt" element={<SiteLayout><ContactPage /></SiteLayout>} />
       <Route path="/handelsbetingelser" element={<SiteLayout><HandelsbetingelserPage /></SiteLayout>} />
       <Route path="/privatlivspolitik" element={<SiteLayout><PrivatlivspolitikPage /></SiteLayout>} />
