@@ -92,6 +92,7 @@ const navItems = [
   { label: "Sådan foregår det", path: "/processen" },
   { label: "FAQ", path: "/faq" },
   { label: "Gavekort", path: "/gavekort" },
+  { label: "Reservér din bryllupsdato", path: "/reserver-bryllupsdato" },
   { label: "Kontakt", path: "/kontakt" },
 ];
 
@@ -811,22 +812,22 @@ function WeddingReservationPage() {
     email: "",
     phone: "",
     weddingDate: "",
-    productInterest: "",
-    giftInterest: "",
     message: "",
     website: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
+  const [availability, setAvailability] = useState<"idle" | "checking" | "available" | "few" | "full" | "error">("idle");
+  const [reservationId, setReservationId] = useState("");
 
   useEffect(() => {
     const previousTitle = document.title;
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     const previousDescription = description?.content;
 
-    document.title = "Reservér jeres bryllupsdato | Tidskapslen";
+    document.title = "Reservér din bryllupsdato | Tidskapslen";
     if (description) {
-      description.content = "Forespørg på en plads til at få jeres brudebuket foreviget i epoxy hos Tidskapslen. Forespørgslen er uforpligtende.";
+      description.content = "Reservér plads til din brudebuket hos Tidskapslen. Reservationsbeløbet på 500 kr. modregnes i den endelige pris.";
     }
 
     return () => {
@@ -839,6 +840,28 @@ function WeddingReservationPage() {
     setForm((current) => ({ ...current, [field]: value }));
   };
 
+  useEffect(() => {
+    if (!form.weddingDate || !supabase) {
+      setAvailability("idle");
+      return;
+    }
+
+    let active = true;
+    setAvailability("checking");
+    supabase.rpc("get_wedding_date_availability", { p_wedding_date: form.weddingDate })
+      .then(({ data, error }) => {
+        if (!active) return;
+        if (error) {
+          setAvailability("error");
+          return;
+        }
+        const label = data?.[0]?.availability;
+        setAvailability(label === "Fuldt booket" ? "full" : label === "Få pladser tilbage" ? "few" : "available");
+      });
+
+    return () => { active = false; };
+  }, [form.weddingDate]);
+
   const submitReservation = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -847,9 +870,15 @@ function WeddingReservationPage() {
       return;
     }
 
-    if (!form.names.trim() || !form.email.trim() || !form.phone.trim() || !form.weddingDate || !form.giftInterest) {
+    if (!form.names.trim() || !form.email.trim() || !form.phone.trim() || !form.weddingDate) {
       setFormStatus("error");
       setFormMessage("Udfyld venligst alle felter markeret med *.");
+      return;
+    }
+
+    if (availability === "full") {
+      setFormStatus("error");
+      setFormMessage("Datoen er fuldt booket. Vælg venligst en anden dato.");
       return;
     }
 
@@ -860,26 +889,27 @@ function WeddingReservationPage() {
     }
 
     setFormStatus("sending");
-    setFormMessage("Sender jeres forespørgsel...");
+    setFormMessage("Reserverer jeres dato...");
 
-    const { error } = await supabase.from("website_inquiries").insert({
-      name: form.names.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim(),
-      occasion: "Datoreservation · Bryllup",
-      event_date: form.weddingDate,
-      product_interest: form.productInterest || null,
-      add_ons: [`Mindre værker/gaver: ${form.giftInterest}`],
-      message: form.message.trim() || "Ingen yderligere besked.",
-      status: "ny",
+    const { data, error } = await supabase.rpc("create_wedding_reservation", {
+      p_customer_name: form.names.trim(),
+      p_email: form.email.trim(),
+      p_phone: form.phone.trim(),
+      p_wedding_date: form.weddingDate,
+      p_comment: form.message.trim() || null,
     });
 
     if (error) {
       setFormStatus("error");
-      setFormMessage("Jeres forespørgsel kunne ikke sendes. Prøv gerne igen, eller kontakt Tidskapslen direkte.");
+      setFormMessage(error.message.includes("fuldt booket")
+        ? "Datoen blev netop fuldt booket. Vælg venligst en anden dato."
+        : error.message.includes("allerede")
+          ? "Der findes allerede en aktiv reservation med denne e-mail på datoen."
+          : "Reservationen kunne ikke oprettes. Prøv igen, eller kontakt Tidskapslen direkte.");
       return;
     }
 
+    setReservationId(data?.[0]?.reservation_id ?? "");
     setFormStatus("success");
     setFormMessage("");
   };
@@ -889,11 +919,10 @@ function WeddingReservationPage() {
       <section className="reservation-hero section">
         <div className="reservation-hero-inner">
           <p className="eyebrow">JERES BLOMSTER FORTJENER AT BLIVE HUSKET</p>
-          <h1>Reservér jeres bryllupsdato</h1>
+          <h1>Reservér din bryllupsdato</h1>
           <p className="reservation-lead">
-            Skal I giftes, kan I allerede nu forespørge på en plads til at få jeres brudebuket
-            foreviget hos Tidskapslen. Jeg tager kun et begrænset antal buketter ind ad gangen,
-            fordi hvert værk skabes i hånden og får den tid og omhu, det kræver.
+            Tidskapslen tager kun et begrænset antal brudebuketter ind omkring samme dato.
+            Med en reservation sikrer du plads i kalenderen til, at din buket kan modtages efter brylluppet.
           </p>
         </div>
       </section>
@@ -902,22 +931,28 @@ function WeddingReservationPage() {
         <div className="reservation-layout">
           <div className="reservation-intro">
             <p className="eyebrow">DET VIGTIGSTE ER JERES DATO</p>
-            <h2>I behøver ikke have valgt jeres værk endnu.</h2>
-            <p>Form, størrelse og de små personlige detaljer finder vi ud af sammen.</p>
+            <h2>Du behøver ikke vælge værket endnu.</h2>
+            <p>Form, størrelse og personlige detaljer aftaler vi cirka fire uger før brylluppet.</p>
+            <div className="reservation-payment-plan">
+              <div><strong>500 kr.</strong><span>betales ved reservation og modregnes i værkets pris</span></div>
+              <div><strong>4 uger før</strong><span>færdiggør vi ordren, og samlet 50 % skal være betalt</span></div>
+              <div><strong>Ved afslutning</strong><span>betales resten før udlevering eller forsendelse</span></div>
+            </div>
             <div className="reservation-note">
               <span aria-hidden="true">✦</span>
-              <p><strong>Forespørgslen er uforpligtende.</strong> Datoen er først reserveret, når I har modtaget en personlig bekræftelse fra Tidskapslen.</p>
+              <p><strong>Eksempel:</strong> Koster værket 3.250 kr., skal der samlet være betalt 1.625 kr. fire uger før brylluppet. Efter reservationsbeløbet mangler derfor 1.125 kr.</p>
             </div>
           </div>
 
           {formStatus === "success" ? (
             <div className="reservation-success" role="status">
               <span className="reservation-success-mark" aria-hidden="true">✦</span>
-              <p className="eyebrow">TAK FOR JERES FORESPØRGSEL</p>
-              <h2>Jeres bryllupsdato er landet trygt hos mig.</h2>
-              <p>Jeg vender personligt tilbage hurtigst muligt og fortæller, om der er plads omkring jeres dato.</p>
-              <p>Først når I har modtaget min bekræftelse, er pladsen reserveret.</p>
-              <p className="reservation-signoff">Jeg glæder mig til at høre mere om jeres bryllup og de blomster, I har valgt til dagen.<br /><strong>Kærlig hilsen<br />Stinna · Tidskapslen</strong></p>
+              <p className="eyebrow">PLADSEN ER RESERVERET</p>
+              <h2>Din bryllupsdato er reserveret.</h2>
+              <p>Der er nu sat plads af til at modtage din brudebuket efter brylluppet.</p>
+              <p><strong>Reservationsbeløbet på 500 kr. afventer betaling.</strong> Du modtager betalingsoplysninger personligt fra Tidskapslen. Beløbet modregnes i den endelige pris.</p>
+              {reservationId && <p className="reservation-reference">Reservationsnummer: <strong>{reservationId.slice(0, 8).toUpperCase()}</strong></p>}
+              <p className="reservation-signoff">Jeg glæder mig til at passe godt på dine blomster.<br /><strong>Kærlig hilsen<br />Stinna · Tidskapslen</strong></p>
             </div>
           ) : (
             <form className="inquiry-form reservation-form" onSubmit={submitReservation}>
@@ -936,29 +971,14 @@ function WeddingReservationPage() {
                 </label>
                 <label>
                   <span>Bryllupsdato *</span>
-                  <input type="date" value={form.weddingDate} onChange={(event) => updateField("weddingDate", event.target.value)} />
+                  <input type="date" min={new Date().toISOString().slice(0, 10)} value={form.weddingDate} onChange={(event) => updateField("weddingDate", event.target.value)} />
+                  {availability !== "idle" && (
+                    <small className={`reservation-availability ${availability}`}>
+                      {availability === "checking" ? "Kontrollerer datoen…" : availability === "full" ? "Fuldt booket" : availability === "few" ? "Få pladser tilbage" : availability === "error" ? "Kunne ikke kontrollere datoen" : "Ledige pladser"}
+                    </small>
+                  )}
                 </label>
               </div>
-
-              <label>
-                <span>Hvilket værk overvejer I?</span>
-                <select value={form.productInterest} onChange={(event) => updateField("productInterest", event.target.value)}>
-                  <option value="">Vi ved det ikke endnu</option>
-                  {products.map((product) => <option key={product.name} value={product.name}>{product.name}</option>)}
-                </select>
-              </label>
-
-              <fieldset className="gift-interest-options">
-                <legend>Vil I høre om mindre værker eller gaver af bryllupsblomsterne? *</legend>
-                <div className="gift-interest-grid">
-                  {["Ja", "Nej", "Måske"].map((answer) => (
-                    <label key={answer} className="radio-label">
-                      <input type="radio" name="giftInterest" value={answer} checked={form.giftInterest === answer} onChange={(event) => updateField("giftInterest", event.target.value)} />
-                      <span>{answer}</span>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
 
               <label className="message-field">
                 <span>Besked <small>(valgfrit)</small></span>
@@ -970,11 +990,11 @@ function WeddingReservationPage() {
                 <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => updateField("website", event.target.value)} />
               </label>
 
-              <button type="submit" className="primary submit-button" disabled={formStatus === "sending"}>
-                {formStatus === "sending" ? "Sender..." : "Forespørg på jeres dato"}
+              <button type="submit" className="primary submit-button" disabled={formStatus === "sending" || availability === "checking" || availability === "full"}>
+                {formStatus === "sending" ? "Reserverer..." : "Reservér datoen"}
               </button>
               {formMessage && <p className={`form-message ${formStatus}`} role={formStatus === "error" ? "alert" : "status"}>{formMessage}</p>}
-              <small className="form-note">Forespørgslen er uforpligtende. Datoen er først reserveret efter personlig bekræftelse fra Tidskapslen.</small>
+              <small className="form-note">Reservationen oprettes med 500 kr. i afventende betaling. Onlinebetaling er ikke tilkoblet endnu.</small>
             </form>
           )}
         </div>
