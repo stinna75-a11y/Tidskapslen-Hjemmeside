@@ -1931,6 +1931,30 @@ background: #F8F1ED;
   margin: 0;
   pointer-events: none;
 }
+
+@media (max-width: 650px) {
+  .hero-logo-layer {
+    top: -10%;
+  }
+
+  .history-page .story {
+    background-color: #faeae7;
+    background-position: top right;
+    background-size: 55% auto;
+  }
+
+  .anledninger-blomster {
+    top: -20px;
+    right: -55px;
+    width: 190px;
+  }
+
+  .historie-gren {
+    top: -5px;
+    right: -35px;
+    width: 155px;
+  }
+}
 .historien-om-mig {
   position: absolute;
   width: 260px;
