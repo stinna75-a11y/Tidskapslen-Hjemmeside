@@ -952,7 +952,7 @@ function WeddingReservationPage() {
               <p>Der er nu sat plads af til at modtage din brudebuket efter brylluppet.</p>
               <p><strong>Reservationsbeløbet på 500 kr. afventer betaling.</strong> Du modtager betalingsoplysninger personligt fra Tidskapslen. Beløbet modregnes i den endelige pris.</p>
               {reservationId && <p className="reservation-reference">Reservationsnummer: <strong>{reservationId.slice(0, 8).toUpperCase()}</strong></p>}
-              <p className="reservation-signoff">Jeg glæder mig til at passe godt på dine blomster.<br /><strong>Kærlig hilsen<br />Stinna · Tidskapslen</strong></p>
+              <p className="reservation-signoff">Jeg glæder mig til at passe godt på dine blomster.<br /><strong>Bedste hilsner<br />Stinna · Tidskapslen</strong></p>
             </div>
           ) : (
             <form className="inquiry-form reservation-form" onSubmit={submitReservation}>
@@ -994,7 +994,6 @@ function WeddingReservationPage() {
                 {formStatus === "sending" ? "Reserverer..." : "Reservér datoen"}
               </button>
               {formMessage && <p className={`form-message ${formStatus}`} role={formStatus === "error" ? "alert" : "status"}>{formMessage}</p>}
-              <small className="form-note">Reservationen oprettes med 500 kr. i afventende betaling. Onlinebetaling er ikke tilkoblet endnu.</small>
             </form>
           )}
         </div>
