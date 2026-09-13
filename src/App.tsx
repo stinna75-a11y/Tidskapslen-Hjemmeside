@@ -102,11 +102,18 @@ const productCategories: Array<{ id: string; title: string; products: Product[] 
 
 const products = productCategories.flatMap((category) => category.products);
 
-const weddingPackages = [
-  { name: "Brudeminde", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir eller Blomsterskulptur"], addOn: "Pakketilvalg: +895 kr.", comparison: "Normalpris for tilvalgene: 1.100 kr.", benefit: "Pakkefordel: 205 kr.", price: "Fra 3.595 kr." },
-  { name: "Bryllupsminder", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "Blomsterminde"], addOn: "Pakketilvalg: +1.595 kr.", comparison: "Normalpris for tilvalgene: 2.000 kr.", benefit: "Pakkefordel: 405 kr.", price: "Fra 4.295 kr." },
-  { name: "Lys & minder", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande"], addOn: "Pakketilvalg: +1.395 kr.", comparison: "Normalpris for de tre lys enkeltvis: 1.785 kr.", benefit: "Samlet pakkefordel: 390 kr.", price: "Fra 4.095 kr." },
-  { name: "Hele buketten", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "2 Blomsterminder"], addOn: "Pakketilvalg: +3.295 kr.", comparison: "Sammenligningspris med de allerede rabatterede sætpriser: 3.795 kr.", benefit: "Yderligere pakkefordel: 500 kr. · Fordel i forhold til enkeltkøb: 790 kr.", price: "Fra 5.995 kr." },
+const weddingPackages: Array<{
+  name: string;
+  items: string[];
+  addOn: string;
+  comparison?: string;
+  benefit: string;
+  price: string;
+}> = [
+  { name: "Brudeminde", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir ELLER Blomsterskulptur"], addOn: "Pakketilvalg: +895 kr.", benefit: "Pakkefordel: 205 kr.", price: "Fra 3.595 kr. inkl. moms" },
+  { name: "Bryllupsminder", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "1 Blomsterminde"], addOn: "Pakketilvalg: +1.595 kr.", benefit: "Pakkefordel: 405 kr.", price: "Fra 4.295 kr. inkl. moms" },
+  { name: "Hele buketten", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "2 Blomsterminder"], addOn: "Pakketilvalg: +3.295 kr.", benefit: "Pakkefordel: 500 kr.", price: "Fra 5.995 kr. inkl. moms" },
+  { name: "Lys & minder", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande"], addOn: "Pakketilvalg: +1.395 kr.", comparison: "Normalpris for de tre Blomsterlys enkeltvis: 1.785 kr.", benefit: "Pakkefordel: 390 kr.", price: "Fra 4.095 kr. inkl. moms" },
 ];
 
 const occasions = [
@@ -554,13 +561,10 @@ function ProductsPage() {
 
       <section id="bryllupspakker" className="wedding-packages section">
         <div className="section-heading products-heading">
-          <p className="eyebrow">Bryllupspakker</p>
-          <h2>Én buket. Flere minder.</h2>
+          <h2>Bryllupspakker</h2>
+          <p className="wedding-packages-message">Én buket. Flere minder.</p>
           <p className="products-intro">
-            Vælg det hovedværk, du forelsker dig i, og lad resten af buketten leve videre i mindre minder.
-          </p>
-          <p className="products-intro">
-            Pakkerne kan sammensættes med blomster og udvalgte personlige elementer fra dagen – eksempelvis fotografier, invitation, bordkort eller bånd fra buketten. På den måde kan hvert lille værk fortælle sin egen del af historien.
+            Du vælger det hovedværk, der passer bedst til din buket, og flere dele af blomsterne kan derefter foreviges som mindre minder. Personlige elementer som foto, invitation, bordkort, bånd eller en håndskrevet note kan også indgå. Særlige ønsker og elementer kan påvirke den endelige pris.
           </p>
         </div>
 
@@ -575,7 +579,7 @@ function ProductsPage() {
               <ul>{weddingPackage.items.map((item) => <li key={item}>{item}</li>)}</ul>
               <div className="package-pricing">
                 <strong>{weddingPackage.addOn}</strong>
-                <span>{weddingPackage.comparison}</span>
+                {weddingPackage.comparison && <span>{weddingPackage.comparison}</span>}
                 <span>{weddingPackage.benefit}</span>
               </div>
               <button type="button" className="product-link" onClick={() => navigate("/kontakt", { state: { productName: `Bryllupspakke: ${weddingPackage.name}` } })}>
