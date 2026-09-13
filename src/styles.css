@@ -1088,6 +1088,8 @@ background: #F8F1ED;
 .product-image-frame img.product-visualization-image {
   width: calc(100% - 44px);
   height: calc(100% - 28px);
+  object-fit: contain;
+  object-position: center;
 }
 
 .product-card--visualization-sculpture .product-image-frame img.product-visualization-image {
