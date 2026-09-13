@@ -105,15 +105,14 @@ const products = productCategories.flatMap((category) => category.products);
 const weddingPackages: Array<{
   name: string;
   items: string[];
-  addOn: string;
   comparison?: string;
   benefit: string;
   price: string;
 }> = [
-  { name: "Brudeminde", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir ELLER Blomsterskulptur"], addOn: "Pakketilvalg: +895 kr.", benefit: "Pakkefordel: 205 kr.", price: "Fra 3.595 kr. inkl. moms" },
-  { name: "Bryllupsminder", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "1 Blomsterminde"], addOn: "Pakketilvalg: +1.595 kr.", benefit: "Pakkefordel: 405 kr.", price: "Fra 4.295 kr. inkl. moms" },
-  { name: "Hele buketten", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "2 Blomsterminder"], addOn: "Pakketilvalg: +3.295 kr.", benefit: "Pakkefordel: 500 kr.", price: "Fra 5.995 kr. inkl. moms" },
-  { name: "Lys & minder", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande"], addOn: "Pakketilvalg: +1.395 kr.", comparison: "Normalpris for de tre Blomsterlys enkeltvis: 1.785 kr.", benefit: "Pakkefordel: 390 kr.", price: "Fra 4.095 kr. inkl. moms" },
+  { name: "Brudeminde", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir ELLER Blomsterskulptur"], benefit: "Du sparer 205 kr. ved at vælge pakken.", price: "Pakkepris fra 3.595 kr. inkl. moms" },
+  { name: "Bryllupsminder", items: ["Valgfrit hovedværk", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "1 Blomsterminde"], benefit: "Du sparer 405 kr. ved at vælge pakken.", price: "Pakkepris fra 4.295 kr. inkl. moms" },
+  { name: "Hele buketten", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande", "Hjerteminde", "Blomsterspir", "Blomsterskulptur", "2 Blomsterminder"], benefit: "Du sparer 500 kr. ved at vælge pakken.", price: "Pakkepris fra 5.995 kr. inkl. moms" },
+  { name: "Lys & minder", items: ["Valgfrit hovedværk", "Blomsterlys Mini", "Blomsterlys Klassisk", "Blomsterlys Grande"], comparison: "Normalpris for de tre Blomsterlys enkeltvis: 1.785 kr.", benefit: "Du sparer 390 kr. ved at vælge pakken.", price: "Pakkepris fra 4.095 kr. inkl. moms" },
 ];
 
 const occasions = [
@@ -578,9 +577,8 @@ function ProductsPage() {
               </div>
               <ul>{weddingPackage.items.map((item) => <li key={item}>{item}</li>)}</ul>
               <div className="package-pricing">
-                <strong>{weddingPackage.addOn}</strong>
                 {weddingPackage.comparison && <span>{weddingPackage.comparison}</span>}
-                <span>{weddingPackage.benefit}</span>
+                <strong>{weddingPackage.benefit}</strong>
               </div>
               <button type="button" className="product-link" onClick={() => navigate("/kontakt", { state: { productName: `Bryllupspakke: ${weddingPackage.name}` } })}>
                 Spørg til denne pakke
