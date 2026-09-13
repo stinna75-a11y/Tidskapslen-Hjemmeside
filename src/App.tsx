@@ -81,7 +81,7 @@ const productCategories: Array<{ title: string; products: Product[] }> = [
       { name: "Blomstersfære Mini", image: product11, imageAlt: "Lille blomstersfære med udvalgte blomster og detaljer", size: "Ø 6,5 cm", price: "750 kr.", description: "En lille sfære til enkelte blomster og fine detaljer fra buketten.", cardClass: "product-card--sfaere-lille" },
       { name: "Hjerteminde", image: product12, imageAlt: "Lille dybt hjerte med blomster foreviget i epoxy", price: "550 kr.", description: "Et lille, dybt hjerte skabt til udvalgte blomster og detaljer fra dit særlige minde." },
       { name: "Blomsterspir", image: product15, imageAlt: "Dekorativt kegleformet blomsterspir i epoxy", size: "Ca. 10 × 5,5 cm", price: "550 kr.", description: "Et dekorativt lille værk, der står smukt alene og fx kan anvendes som ring- eller smykkeholder." },
-      { name: "Blomsterskulptur", image: kvindekropVisualization, imageAlt: "Visualisering af Blomsterskulptur med blomster foreviget i epoxy", size: "10 × 7 cm", price: "550 kr.", description: "En feminin skulpturel form, hvor blomsterne bliver en del af et lille kunstobjekt.", imageIsVisualization: true },
+      { name: "Blomsterskulptur", image: kvindekropVisualization, imageAlt: "Visualisering af Blomsterskulptur med blomster foreviget i epoxy", size: "10 × 7 cm", price: "550 kr.", description: "En feminin skulpturel form, hvor blomsterne bliver en del af et lille kunstobjekt.", imageIsVisualization: true, cardClass: "product-card--visualization-sculpture" },
       { name: "Blomsterminde", image: product14, imageAlt: "Lille rundt blomsterminde i epoxy med bevarede blomster", size: "10 × 10 × 1,5 cm", price: "1 stk. 350 kr. · 2 stk. 650 kr. · 4 stk. 1.200 kr.", description: "Et lille minde, der kan bruges som coaster eller udføres med ophæng.", detail: "Flere Blomsterminder kan fx skabes som små personlige minder til familie eller andre, der stod én nær på dagen." },
     ],
   },
@@ -480,7 +480,7 @@ function ProductsPage() {
                   <article className={["product-card", product.cardClass].filter(Boolean).join(" ")} key={product.name}>
                     <div className="product-image-frame">
                       {product.image ? (
-                        <img src={product.image} alt={product.imageAlt} />
+                        <img className={product.imageIsVisualization ? "product-visualization-image" : undefined} src={product.image} alt={product.imageAlt} />
                       ) : (
                         <div className="product-image-placeholder" role="img" aria-label={product.imageAlt}>
                           <span>✦</span>

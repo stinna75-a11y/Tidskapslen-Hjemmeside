@@ -1085,6 +1085,18 @@ background: #F8F1ED;
   display: block;
 }
 
+.product-image-frame img.product-visualization-image {
+  width: calc(100% - 18px);
+  height: calc(100% - 18px);
+}
+
+.product-card--visualization-sculpture .product-image-frame img.product-visualization-image {
+  width: calc(100% - 54px);
+  height: calc(100% - 28px);
+  object-fit: contain;
+  object-position: center 56%;
+}
+
 .product-image-placeholder {
   display: grid;
   width: 100%;
