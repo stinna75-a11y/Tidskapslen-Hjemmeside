@@ -51,8 +51,9 @@ type Product = {
   cardClass?: string;
 };
 
-const productCategories: Array<{ title: string; products: Product[] }> = [
+const productCategories: Array<{ id: string; title: string; products: Product[] }> = [
   {
+    id: "hovedvaerker",
     title: "Hovedværker",
     products: [
       { name: "Kvadrat Grande", image: kvadratGrandeVisualization, imageAlt: "Visualisering af Kvadrat Grande med blomster foreviget i epoxy", size: "23 × 20 × 8 cm", price: "Fra 3.995 kr.", subtitle: "Tidskapslens flagskib", description: "En ekstra dyb form med plads til at bevare en stor del af brudebuketten samlet.", imageIsVisualization: true },
@@ -67,6 +68,7 @@ const productCategories: Array<{ title: string; products: Product[] }> = [
     ],
   },
   {
+    id: "saerlige-mindevaerker",
     title: "Særlige mindeværker",
     products: [
       { name: "Sommerfuglen", image: product07, imageAlt: "Sommerfugleformet epoxyværk med blomster bevaret i vingerne", size: "25 × 18 × 5 cm", price: "1.495 kr.", description: "En let og organisk form, hvor blomsterne får lov at følge sommerfuglens vinger." },
@@ -75,6 +77,7 @@ const productCategories: Array<{ title: string; products: Product[] }> = [
     ],
   },
   {
+    id: "smaa-minder",
     title: "Små minder",
     products: [
       { name: "Blomstersfære", image: product10, imageAlt: "Mindre rund blomstersfære med forevigede blomster", size: "Ø 8 cm", price: "950 kr.", description: "Et mindre rundt mindeværk, hvor blomsterne kan ses fra alle vinkler.", cardClass: "product-card--sfaere-mellem" },
@@ -86,6 +89,7 @@ const productCategories: Array<{ title: string; products: Product[] }> = [
     ],
   },
   {
+    id: "blomsterlys",
     title: "Blomsterlys",
     products: [
       { name: "Blomsterlys Mini", image: blomsterlysMiniVisualization, imageAlt: "Visualisering af Blomsterlys Mini", size: "Ø 8 cm", price: "495 kr.", description: "En lille rund fyrfadsstage med dine egne blomster bevaret i epoxy.", imageIsVisualization: true },
@@ -148,14 +152,15 @@ function SiteLayout({ children }: { children: ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     if (location.hash) {
       const targetId = location.hash.replace("#", "");
       requestAnimationFrame(() => {
         document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
       });
+      return;
     }
+
+    window.scrollTo(0, 0);
   }, [location.pathname, location.hash]);
 
   useEffect(() => {
@@ -468,9 +473,18 @@ function ProductsPage() {
           <p className="products-intro">Alle viste priser er inkl. moms.</p>
         </div>
 
+        <nav className="products-section-nav" aria-label="Genveje på Produkter og priser">
+          <a href="#hovedvaerker">Hovedværker</a>
+          <a href="#saerlige-mindevaerker">Særlige mindeværker</a>
+          <a href="#smaa-minder">Små minder</a>
+          <a href="#blomsterlys">Blomsterlys</a>
+          <a href="#mere-end-blomster">Mere end blomster</a>
+          <a className="products-section-nav-highlight" href="#bryllupspakker">Bryllupspakker</a>
+        </nav>
+
         <div className="product-category-list">
           {productCategories.map((category) => (
-            <section className="product-category" key={category.title}>
+            <section id={category.id} className="product-category" key={category.title}>
               <div className="product-category-heading">
                 <span>✦</span>
                 <h2>{category.title}</h2>
@@ -509,7 +523,7 @@ function ProductsPage() {
         </div>
       </section>
 
-      <section className="add-ons personal-elements section">
+      <section id="mere-end-blomster" className="add-ons personal-elements section">
         <div className="section-heading products-heading">
           <p className="eyebrow">Personlige elementer</p>
           <h2>Mere end blomster</h2>
@@ -538,7 +552,7 @@ function ProductsPage() {
         </div>
       </section>
 
-      <section className="wedding-packages section">
+      <section id="bryllupspakker" className="wedding-packages section">
         <div className="section-heading products-heading">
           <p className="eyebrow">Bryllupspakker</p>
           <h2>Én buket. Flere minder.</h2>

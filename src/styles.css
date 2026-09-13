@@ -1015,6 +1015,47 @@ background: #F8F1ED;
   line-height: 1.8;
 }
 
+.products-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: clamp(34px, 5vw, 52px) 0 clamp(48px, 7vw, 76px);
+  padding: 16px 0;
+  border-top: 1px solid rgba(157, 118, 133, .18);
+  border-bottom: 1px solid rgba(157, 118, 133, .18);
+}
+
+.products-section-nav a {
+  color: #786b70;
+  font-size: .88rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.products-section-nav a:not(:last-child)::after {
+  margin-left: 12px;
+  color: #c798aa;
+  content: "·";
+}
+
+.products-section-nav a:hover,
+.products-section-nav a:focus-visible,
+.products-section-nav .products-section-nav-highlight {
+  color: #9e7083;
+}
+
+.products-section-nav .products-section-nav-highlight {
+  font-weight: 700;
+}
+
+.product-category,
+.personal-elements,
+.wedding-packages {
+  scroll-margin-top: 100px;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1394,6 +1435,15 @@ padding: 18px 40px 24px;
 
   .product-category-heading {
     margin-bottom: 18px;
+  }
+
+  .products-section-nav {
+    gap: 10px 0;
+    margin-bottom: 48px;
+  }
+
+  .products-section-nav a {
+    font-size: .84rem;
   }
 }
 
