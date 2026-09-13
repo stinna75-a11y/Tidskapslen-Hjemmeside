@@ -7,7 +7,6 @@ import headerBillede from "./assets/forside-desktop-uden-tekst-v2.png";
 import headerBilledeMobil from "./assets/forside-mobil-uden-tekst-v2.png";
 import heroLogo from "./assets/hovedlogo-transparent.png";
 import anledningerBlomster from "./assets/anledninger-blomster.png";
-import product02 from "./assets/produkt-02.png";
 import product03 from "./assets/produkt-03.png";
 import product04 from "./assets/produkt-04.png";
 import product05 from "./assets/produkt-05.png";
@@ -20,6 +19,15 @@ import product11 from "./assets/produkt-11.png";
 import product12 from "./assets/produkt-12.png";
 import product14 from "./assets/produkt-14.png";
 import product15 from "./assets/produkt-15.png";
+import kvadratGrandeVisualization from "./assets/kvadrat-grande-visualisering.png";
+import kvadratKlassiskVisualization from "./assets/kvadrat-klassisk-visualisering.png";
+import hjemVisualization from "./assets/hjem-visualisering.png";
+import kvindekropVisualization from "./assets/kvindekrop-visualisering.png";
+import blomsterlysMiniVisualization from "./assets/blomsterlys-mini-visualisering.png";
+import blomsterlysKlassiskVisualization from "./assets/blomsterlys-klassisk-visualisering.png";
+import blomsterlysGrandeVisualization from "./assets/blomsterlys-grande-visualisering.png";
+import blomsterlysSamletVisualization from "./assets/blomsterlys-samlet-visualisering.png";
+import hexagonKlassiskVisualization from "./assets/hexagon-klassisk-visualisering.png";
 import signature from "./assets/Min signatur.png";
 import historienGren from "./assets/historien-gren.png";
 import historienOmMig from "./assets/historien-om-mig.png";
@@ -47,12 +55,13 @@ const productCategories: Array<{ title: string; products: Product[] }> = [
   {
     title: "Hovedværker",
     products: [
-      { name: "Kvadrat Grande", imageAlt: "Plads reserveret til produktfoto af Kvadrat Grande", size: "23 × 20 × 8 cm", price: "Fra 3.995 kr.", subtitle: "Tidskapslens flagskib", description: "En ekstra dyb form med plads til at bevare en stor del af brudebuketten samlet." },
+      { name: "Kvadrat Grande", image: kvadratGrandeVisualization, imageAlt: "Visualisering af Kvadrat Grande med blomster foreviget i epoxy", size: "23 × 20 × 8 cm", price: "Fra 3.995 kr.", subtitle: "Tidskapslens flagskib", description: "En ekstra dyb form med plads til at bevare en stor del af brudebuketten samlet.", imageIsVisualization: true },
       { name: "Hexagon Signatur", image: heroProduct, imageAlt: "Stort sekskantet epoxyminde med en buket af forevigede blomster", size: "25,8 × 22,8 × 5,2 cm", price: "Fra 3.250 kr.", description: "Et rummeligt og elegant værk med god plads til større blomster og et fyldigt arrangement." },
       { name: "Bue Signatur", image: product05, imageAlt: "Stort bueformet epoxyminde med nænsomt forevigede blomster", size: "16 × 21 × 3,5 cm", price: "Fra 3.095 kr.", description: "En blød og elegant form, hvor blomsterne får et let og organisk udtryk.", cardClass: "product-card--arc-stor" },
       { name: "Hjerte Signatur", image: product03, imageAlt: "Stort hjerteformet epoxyminde fyldt med forevigede blomster", size: "19 × 22 × 5 cm", price: "Fra 2.995 kr.", description: "Et klassisk, romantisk værk med god plads til blomsterne fra livets særlige øjeblikke.", cardClass: "product-card--hjerte-stor" },
-      { name: "Hjem", imageAlt: "Plads reserveret til produktfoto af Hjem", size: "23 × 20 × 5 cm", price: "Fra 3.095 kr.", description: "En varm og anderledes form, der symboliserer hjem, nærhed og de minder, vi skaber sammen." },
-      { name: "Hexagon Klassisk", image: product02, imageAlt: "Visualisering af mindre sekskantet form til epoxyminde", size: "18,5 × 16,5 × 5,1 cm", price: "Fra 2.800 kr.", description: "Den klassiske hexagon i en mindre størrelse – stadig med god dybde og plads til blomsterne.", imageIsVisualization: true },
+      { name: "Hjem", image: hjemVisualization, imageAlt: "Visualisering af det husformede produkt Hjem med blomster foreviget i epoxy", size: "23 × 20 × 5 cm", price: "Fra 3.095 kr.", description: "En varm og anderledes form, der symboliserer hjem, nærhed og de minder, vi skaber sammen.", imageIsVisualization: true },
+      { name: "Kvadrat Klassisk", image: kvadratKlassiskVisualization, imageAlt: "Visualisering af Kvadrat Klassisk med blomster foreviget i epoxy", size: "16,8 × 16,8 × 5,2 cm", price: "Fra 2.800 kr.", description: "Et klassisk, harmonisk værk med god dybde og plads til både større blomster og fine detaljer.", imageIsVisualization: true },
+      { name: "Hexagon Klassisk", image: hexagonKlassiskVisualization, imageAlt: "Visualisering af Hexagon Klassisk med blomster foreviget i epoxy", size: "18,5 × 16,5 × 5,1 cm", price: "Fra 2.800 kr.", description: "Den klassiske hexagon i en mindre størrelse – stadig med god dybde og plads til blomsterne.", imageIsVisualization: true },
       { name: "Hjerte Klassisk", image: product04, imageAlt: "Mindre hjerteformet epoxyminde med personlige blomster", size: "12 × 12 × 3,5 cm", price: "Fra 2.700 kr.", description: "Et mindre hovedværk med hjertets klassiske form og et enkelt, elegant udtryk." },
       { name: "Bue Klassisk", image: product06, imageAlt: "Mindre bueformet epoxyminde med indstøbte blomster", size: "12 × 17 × 3,5 cm", price: "Fra 2.700 kr.", description: "Den elegante bue i et mindre format – velegnet til et enkelt og luftigt blomsterdesign." },
     ],
@@ -72,17 +81,17 @@ const productCategories: Array<{ title: string; products: Product[] }> = [
       { name: "Blomstersfære Mini", image: product11, imageAlt: "Lille blomstersfære med udvalgte blomster og detaljer", size: "Ø 6,5 cm", price: "750 kr.", description: "En lille sfære til enkelte blomster og fine detaljer fra buketten.", cardClass: "product-card--sfaere-lille" },
       { name: "Hjerteminde", image: product12, imageAlt: "Lille dybt hjerte med blomster foreviget i epoxy", price: "550 kr.", description: "Et lille, dybt hjerte skabt til udvalgte blomster og detaljer fra dit særlige minde." },
       { name: "Blomsterspir", image: product15, imageAlt: "Dekorativt kegleformet blomsterspir i epoxy", size: "Ca. 10 × 5,5 cm", price: "550 kr.", description: "Et dekorativt lille værk, der står smukt alene og fx kan anvendes som ring- eller smykkeholder." },
-      { name: "Blomsterskulptur", imageAlt: "Plads reserveret til produktfoto af Blomsterskulptur", size: "10 × 7 cm", price: "550 kr.", description: "En feminin skulpturel form, hvor blomsterne bliver en del af et lille kunstobjekt." },
+      { name: "Blomsterskulptur", image: kvindekropVisualization, imageAlt: "Visualisering af Blomsterskulptur med blomster foreviget i epoxy", size: "10 × 7 cm", price: "550 kr.", description: "En feminin skulpturel form, hvor blomsterne bliver en del af et lille kunstobjekt.", imageIsVisualization: true },
       { name: "Blomsterminde", image: product14, imageAlt: "Lille rundt blomsterminde i epoxy med bevarede blomster", size: "10 × 10 × 1,5 cm", price: "1 stk. 350 kr. · 2 stk. 650 kr. · 4 stk. 1.200 kr.", description: "Et lille minde, der kan bruges som coaster eller udføres med ophæng.", detail: "Flere Blomsterminder kan fx skabes som små personlige minder til familie eller andre, der stod én nær på dagen." },
     ],
   },
   {
     title: "Blomsterlys",
     products: [
-      { name: "Blomsterlys Mini", imageAlt: "Plads reserveret til produktfoto af Blomsterlys Mini", size: "Ø 8 cm", price: "495 kr.", description: "En lille rund fyrfadsstage med dine egne blomster bevaret i epoxy." },
-      { name: "Blomsterlys Klassisk", imageAlt: "Plads reserveret til produktfoto af Blomsterlys Klassisk", size: "Ø 10 cm", price: "595 kr.", description: "Den mellemste fyrfadsstage – smuk alene eller sammen med de øvrige størrelser." },
-      { name: "Blomsterlys Grande", imageAlt: "Plads reserveret til produktfoto af Blomsterlys Grande", size: "Ø 12 cm", price: "695 kr.", description: "Den største fyrfadsstage med ekstra plads til blomster og detaljer." },
-      { name: "Blomsterlys · Sæt med 3", imageAlt: "Plads reserveret til produktfoto af et sæt med tre Blomsterlys", price: "1.495 kr.", description: "Tre størrelser skabt med blomster fra den samme buket. Smukke samlet og hver for sig.", detail: "Enkeltpris samlet 1.785 kr. · pakkefordel 290 kr." },
+      { name: "Blomsterlys Mini", image: blomsterlysMiniVisualization, imageAlt: "Visualisering af Blomsterlys Mini", size: "Ø 8 cm", price: "495 kr.", description: "En lille rund fyrfadsstage med dine egne blomster bevaret i epoxy.", imageIsVisualization: true },
+      { name: "Blomsterlys Klassisk", image: blomsterlysKlassiskVisualization, imageAlt: "Visualisering af Blomsterlys Klassisk", size: "Ø 10 cm", price: "595 kr.", description: "Den mellemste fyrfadsstage – smuk alene eller sammen med de øvrige størrelser.", imageIsVisualization: true },
+      { name: "Blomsterlys Grande", image: blomsterlysGrandeVisualization, imageAlt: "Visualisering af Blomsterlys Grande", size: "Ø 12 cm", price: "695 kr.", description: "Den største fyrfadsstage med ekstra plads til blomster og detaljer.", imageIsVisualization: true },
+      { name: "Blomsterlys · Sæt med 3", image: blomsterlysSamletVisualization, imageAlt: "Visualisering af et samlet sæt med tre Blomsterlys", price: "1.495 kr.", description: "Tre størrelser skabt med blomster fra den samme buket. Smukke samlet og hver for sig.", detail: "Enkeltpris samlet 1.785 kr. · pakkefordel 290 kr.", imageIsVisualization: true },
     ],
   },
 ];
@@ -479,12 +488,9 @@ function ProductsPage() {
                         </div>
                       )}
                     </div>
-                    {product.imageIsVisualization && (
-                      <p className="product-visualization-note">Visualisering – det viste værk er et eksempel på produktets mulige udtryk.</p>
-                    )}
                     <div className="product-card-footer">
                       <div>
-                        <h3>{product.name}</h3>
+                        <h3>{product.name}{product.imageIsVisualization && <sup className="product-visualization-marker" aria-label="visualiseret produktbillede">*</sup>}</h3>
                         {product.subtitle && <p className="product-subtitle">{product.subtitle}</p>}
                       </div>
                       {product.size && <p className="product-size">{product.size}</p>}
@@ -568,6 +574,11 @@ function ProductsPage() {
           Du vælger selv hovedværket. Den viste fra-pris tager udgangspunkt i et hovedværk til 2.700 kr. og ændres efter dit valg samt eventuelle særlige ønsker.
         </p>
       </section>
+
+      <aside className="product-visualization-disclosure section" aria-label="Forklaring af visualiserede produktbilleder">
+        <strong>* Visualiseret produktbillede</strong>
+        <p>Billedet er en visualisering og viser et eksempel på produktets mulige udtryk. Dit værk skabes individuelt af dine egne blomster og vil derfor altid være unikt.</p>
+      </aside>
 
       <section className="quote-band">
         <blockquote>“Det, vi holder af, behøver ikke forsvinde, bare fordi øjeblikket er forbi.”</blockquote>

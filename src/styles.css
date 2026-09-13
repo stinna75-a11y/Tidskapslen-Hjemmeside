@@ -1109,13 +1109,12 @@ background: #F8F1ED;
   text-transform: uppercase;
 }
 
-.product-visualization-note {
-  margin: 0;
-  padding: 8px 18px;
-  border-bottom: 1px solid rgba(157, 118, 133, .1);
-  color: #8a7980;
-  font-size: .68rem;
-  line-height: 1.45;
+.product-visualization-marker {
+  margin-left: 2px;
+  color: #9e7083;
+  font-size: .65em;
+  line-height: 0;
+  vertical-align: super;
 }
 
 .product-card--arc-stor .product-image-frame img {
@@ -1295,6 +1294,28 @@ padding: 18px 40px 24px;
   font-size: .88rem;
   line-height: 1.7;
   text-align: center;
+}
+
+.product-visualization-disclosure {
+  display: grid;
+  gap: 6px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  background: #f8f0f1;
+  color: #7d6f74;
+  font-size: .78rem;
+  line-height: 1.6;
+}
+
+.product-visualization-disclosure strong,
+.product-visualization-disclosure p {
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
+.product-visualization-disclosure strong {
+  color: #6f5d64;
+  font-size: .82rem;
 }
 
 .add-on-grid {
