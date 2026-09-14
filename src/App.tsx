@@ -709,7 +709,7 @@ function FaqPage() {
           </article>
           <article className="faq-card">
             <h3>Hvor lang tid tager det at forevige blomster i epoxy?</h3>
-            <p>Processen kan ikke forhastes. Blomsterne skal først tørres og klargøres, og epoxyarbejdet udføres i flere trin. Du får et realistisk forventet tidsforløb, når vi har talt om dit projekt.</p>
+            <p>Den forventede leveringstid er som udgangspunkt 3–4 måneder fra modtagelsen af blomsterne.<br /><br />Blomsterne skal først tørres og klargøres, hvorefter epoxyarbejdet udføres i flere lag og trin. Når værket er færdigstøbt, følger den afsluttende efterbehandling med blandt andet slibning, topcoat og polering.<br /><br />Hvert værk fremstilles individuelt, og processen kan ikke forhastes. Derfor kan leveringstiden variere lidt.</p>
           </article>
           <article className="faq-card">
             <h3>Kan jeg få aske, tekst eller en personlig genstand med?</h3>
