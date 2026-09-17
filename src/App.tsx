@@ -1377,6 +1377,8 @@ function HandelsbetingelserPage() {
           <p>Alle værker fremstilles individuelt med kundens egne blomster og andre aftalte materialer. Farver, form og udtryk kan ændre sig under tørring og indstøbning. Små luftbobler, nuanceforskelle og naturlige variationer kan forekomme og er en del af det håndlavede udtryk.</p>
           <h4>4. Pris og betaling</h4>
           <p>Den konkrete pris aftales før arbejdet påbegyndes. Eventuelle “fra-priser” er vejledende minimumspriser. Kunden informeres om den samlede aftalte pris og eventuelle leveringsomkostninger inden bindende aftale. Betalingsmetode og betalingstidspunkt fremgår af den konkrete ordrebekræftelse.</p>
+          <h4>Gavekort</h4>
+          <p>Gavekort er gyldige i 3 år fra udstedelsesdatoen og kan anvendes som hel eller delvis betaling hos Tidskapslen. Eventuel resterende saldo bevares på gavekortet. Elektroniske gavekort kan kræves udbetalt efter de til enhver tid gældende regler i betalingsloven.</p>
           <h4>5. Levering og tidsforløb</h4>
           <p>Den normale leveringstid er ca. 3–4 måneder fra modtagelsen af blomsterne. Tidsforløbet kan variere afhængigt af blomsternes tilstand, tørretid, det valgte produkt og arbejdets omfang. Da processen består af flere håndværksmæssige trin, herunder tørring, klargøring og støbning, kan den ikke forhastes. Et forventet tidsforløb oplyses i forbindelse med den konkrete aftale. Forsinkelser kan forekomme, hvis materialerne kræver ekstra behandling, eller hvis uforudsete forhold opstår.</p>
           <h4>6. Kundens blomster og indleverede genstande</h4>

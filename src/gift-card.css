@@ -44,3 +44,5 @@
   .gift-card-amount-options { grid-template-columns: 1fr 1fr; gap: 9px; }
   .gift-card-amount-options label { padding: 13px 8px; font-size: .9rem; }
 }
+
+.gift-card-validity { margin: 14px 0 0; color: #786b70; font-size: .875rem; line-height: 1.6; }

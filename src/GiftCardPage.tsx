@@ -138,7 +138,7 @@ export function GiftCardPage() {
         <div className="gift-card-order-heading">
           <p className="eyebrow">Bestilling</p>
           <h2>Bestil dit gavekort</h2>
-          <p>Der er ingen onlinebetaling endnu. Når bestillingen er modtaget, sender jeg betalingsoplysningerne personligt.</p>
+          <p>Når bestillingen er modtaget, sender jeg betalingsoplysningerne på e-mail.</p>
         </div>
 
         {confirmationNumber ? (
@@ -234,6 +234,7 @@ export function GiftCardPage() {
             <button className="primary" type="submit" disabled={submitting}>
               {submitting ? "Gemmer bestillingen…" : "Bestil gavekort"}
             </button>
+            <p className="gift-card-validity">Gavekortet er gyldigt i 3 år fra udstedelsesdatoen og kan anvendes som hel eller delvis betaling hos Tidskapslen.</p>
           </form>
         )}
       </section>
