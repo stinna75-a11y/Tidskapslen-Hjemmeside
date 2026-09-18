@@ -1370,7 +1370,7 @@ function HandelsbetingelserPage() {
         <p className="eyebrow">Handelsbetingelser</p>
           <h3>Handelsbetingelser for Tidskapslen</h3>
           <h4>1. Virksomhedsoplysninger</h4>
-          <p>Tidskapslen · CVR: 46677528 · E-mail: tidskapslenepoxyminder@gmail.com · Telefon: 40 92 23 14.</p>
+          <p>Tidskapslen · CVR: 46677528 · E-mail: kontakt@tidskapslenepoxyminder.dk · Telefon: 40 92 23 14.</p>
           <h4>2. Forespørgsel og aftale</h4>
           <p>En henvendelse via hjemmesiden er uforpligtende og udgør ikke en bindende bestilling. En aftale indgås først, når Tidskapslen og kunden skriftligt har aftalt det konkrete produkt, pris, eventuelle tilvalg, levering og øvrige relevante forhold.</p>
           <h4>3. Unika og naturmaterialer</h4>
@@ -1401,7 +1401,7 @@ function PrivatlivspolitikPage() {
         <p className="eyebrow">Privatlivspolitik</p>
         <h3>Sådan behandler Tidskapslen dine oplysninger</h3>
         <h4>1. Dataansvarlig</h4>
-        <p>Tidskapslen / Tidskapslen, CVR: 46677528, er dataansvarlig for de personoplysninger, du sender via hjemmesiden eller giver i forbindelse med en kundehenvendelse. Kontakt: email; tidskapslenepoxyminder@gmail.com Telefon: 40922314.</p>
+        <p>Tidskapslen / Tidskapslen, CVR: 46677528, er dataansvarlig for de personoplysninger, du sender via hjemmesiden eller giver i forbindelse med en kundehenvendelse. Kontakt: email; kontakt@tidskapslenepoxyminder.dk Telefon: 40922314.</p>
         <h4>2. Hvilke oplysninger behandles?</h4>
         <p>Vi kan behandle navn, e-mailadresse, telefonnummer, anledning, dato for begivenhed, produktinteresse, tilvalg og den besked, du selv skriver i kontaktformularen. Senere i kundeforløbet kan vi også behandle oplysninger, der er nødvendige for tilbud, aftale, betaling, levering og dokumentation.</p>
         <h4>3. Formål</h4>
@@ -1413,7 +1413,7 @@ function PrivatlivspolitikPage() {
         <h4>6. Databehandlere og hosting</h4>
         <p>Hjemmesiden kan anvende tekniske leverandører til hosting og datalagring, herunder Vercel og Supabase. Disse leverandører behandler kun oplysninger som led i den tekniske drift og efter gældende databeskyttelseskrav.</p>
         <h4>7. Dine rettigheder</h4>
-        <p>Du kan blandt andet have ret til indsigt, rettelse, sletning, begrænsning og indsigelse afhængigt af situationen. Du kan kontakte Tidskapslen via [indsæt e-mail]. Du kan også klage til Datatilsynet, hvis du mener, at dine personoplysninger behandles i strid med reglerne.</p>
+        <p>Du kan blandt andet have ret til indsigt, rettelse, sletning, begrænsning og indsigelse afhængigt af situationen. Du kan kontakte Tidskapslen via kontakt@tidskapslenepoxyminder.dk. Du kan også klage til Datatilsynet, hvis du mener, at dine personoplysninger behandles i strid med reglerne.</p>
       </article>
     </LegalPage>
   );
